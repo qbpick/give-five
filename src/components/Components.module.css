@@ -59,18 +59,18 @@ footer > p {
     opacity: 0;
   }
   
-  .menu__toggle:checked ~ .menu__btn > span {
+  .menu__toggle:focus ~ .menu__btn > span {
     transform: rotate(45deg);
   }
-  .menu__toggle:checked ~ .menu__btn > span::before {
+  .menu__toggle:focus ~ .menu__btn > span::before {
     top: 0;
     transform: rotate(0);
   }
-  .menu__toggle:checked ~ .menu__btn > span::after {
+  .menu__toggle:focus ~ .menu__btn > span::after {
     top: 0;
     transform: rotate(90deg);
   }
-  .menu__toggle:checked ~ .menu__box {
+  .menu__toggle:focus ~ .menu__box {
     visibility: visible;
     left: 0;
   }
@@ -126,14 +126,14 @@ footer > p {
   
     list-style: none;
   
-    background-color: #ECEFF1;
+    background-color: #83d7ac;
     box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
   
     transition-duration: .25s;
   }
 
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 425px) {
     .header_list {
         display: none;
     }

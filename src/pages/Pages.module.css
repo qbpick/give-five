@@ -1,3 +1,4 @@
+/* Главная страница */
 .homepage {
   width: 100%;
   display: flex;
@@ -36,7 +37,7 @@
   flex-wrap: wrap;
   width: 75%;
   justify-content: space-between;
-  height: 100vh;
+  min-height: 100vh;
 }
 .homepage_news {
   text-align: center;
@@ -59,7 +60,78 @@
   height: 50%;
 }
 
-@media screen and (max-width: 320px) {
+/* Страница авторизации */
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.2em;
+  min-height: 46vh;
+}
+.login > h2,
+.signup_section > h2 {
+  font-weight: 500;
+}
+.input_text_auth {
+  border-radius: 5px;
+  border: solid 1px #dddddd;
+  font-size: 1em;
+  color: rgb(0, 0, 0);
+  width: 50vh;
+  height: 5vh;
+  font-style: normal;
+  padding: 10px;
+}
+.input_text_auth:focus {
+  outline: none;
+  transition: 0.4s;
+  border: solid 2px #bebebe;
+}
+.login > button {
+  width: 15vh;
+  height: 5vh;
+  font-size: 1.2em;
+  font-style: normal;
+  color: rgb(255, 255, 255);
+  border: none;
+  background-color: #83d7ac;
+  cursor: pointer;
+  line-height: 0;
+}
+.login > p {
+  font-style: normal;
+}
+.login > label {
+  font-style: normal;
+  font-size: 1.1em;
+}
+.login__link_authorization {
+  text-decoration: none;
+  color: #5d5d5d;
+}
+/* Регистрация */
+.signup_section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.2em;
+  min-height: 60vh;
+}
+.signup_section > button {
+  width: 20vh;
+  height: 5vh;
+  font-size: 1em;
+  font-style: normal;
+  color: rgb(255, 255, 255);
+  border: none;
+  line-height: 0;
+  background-color: #83d7ac;
+  cursor: pointer;
+}
+@media screen and (max-width: 425px) {
+  /* адаптив главной страницы*/
   .homepage_section {
     display: flex;
     flex-direction: column;
@@ -75,6 +147,31 @@
   }
   .homepage_news {
     display: block;
-    margin-top: 500%;
+  }
+  .homepage_news__slider > img {
+    width: 320px;
+    height: 300px;
+  }
+  .homepage_news__slider > input {
+    margin-top: 10px;
+  }
+  /* адаптив авторизации и регистрации */
+  .signup_section {
+    height: 100vh;
+  }
+  .input_text_auth {
+    width: 45vh;
+  }
+  .login  {
+    height: 100vh;
+  }
+  .signup_section > button {
+    width: 45vh;
+  }
+  .login > button {
+    width: 25vh;
+  }
+  .login {
+    text-align: center;
   }
 }

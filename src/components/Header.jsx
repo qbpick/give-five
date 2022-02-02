@@ -3,6 +3,7 @@ import Logo from "../assets/images/logo.png";
 import style from "./Components.module.css";
 
 export const Header = () => {
+
   return (
     <header>
       <img src={Logo} alt="logo" className={style.header__logo} />
