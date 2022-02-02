@@ -3,6 +3,7 @@ import { Layout } from "./components/Layout";
 import { Feedback } from "./pages/Feedback";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
+import { Messenger } from "./pages/Messenger";
 import { QnA } from "./pages/QnA";
 import { Signup } from "./pages/Signup";
 
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="feedback" element={<Feedback />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="messenger" element={<Messenger />} />
         </Route>
       </Routes>
     </>
