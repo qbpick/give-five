@@ -85,8 +85,8 @@
 }
 .input_text_auth:focus {
   outline: none;
-  transition: 0.4s;
-  border: solid 2px #bebebe;
+  transition: 0.2s;
+  border: solid 3px #c7c7c7;
 }
 .login > button {
   width: 15vh;
@@ -130,6 +130,50 @@
   background-color: #83d7ac;
   cursor: pointer;
 }
+.signup_section > p {
+  font-style: normal;
+}
+/* QnA */
+.section_qna {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 50vh;
+}
+.section_qna > h2 {
+  font-style: normal;
+  font-size: 2em;
+  text-align: center;
+}
+.section_qna > p {
+  font-style: normal;
+  font-weight: 400;
+  color: black;
+  width: 80%;
+  font-size: 1.2em;
+}
+.section_qna > p > a {
+  text-decoration: none;
+  color: #5d5d5d;
+}
+.section_feedback {
+  display: flex;
+  flex-direction: column;
+  min-height: 46vh;
+  align-items: center;
+  justify-content: space-around;
+}
+.section_feedback > p {
+  width: 80%;
+  align-self: center;
+  font-size: 1.2em;
+}
+.section_feedback > p > a {
+  text-decoration: none;
+  color: #5d5d5d;
+}
 @media screen and (max-width: 425px) {
   /* адаптив главной страницы*/
   .homepage_section {
@@ -162,7 +206,7 @@
   .input_text_auth {
     width: 45vh;
   }
-  .login  {
+  .login {
     height: 100vh;
   }
   .signup_section > button {
