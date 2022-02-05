@@ -3,7 +3,6 @@ import Logo from "../assets/images/logo.png";
 import style from "./Components.module.css";
 
 export const Header = () => {
-
   return (
     <header>
       <img src={Logo} alt="logo" className={style.header__logo} />
@@ -34,6 +33,16 @@ export const Header = () => {
               Вход
             </Link>
           </li>
+          <li>
+            <Link className={style.header_list_link} to="/profile/infouser">
+              Профиль
+            </Link>
+          </li>
+          <li>
+            <Link to="/profile/tests" className={style.header_list_link}>
+              Тесты
+            </Link>
+          </li>
         </ul>
       </div>
       <div className={style.header_list}>
@@ -48,6 +57,9 @@ export const Header = () => {
         </Link>
         <Link className={style.header_list_link} to="/login">
           Вход
+        </Link>
+        <Link className={style.header_list_link} to="/profile/infouser">
+          Профиль
         </Link>
       </div>
     </header>

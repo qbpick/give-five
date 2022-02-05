@@ -99,6 +99,10 @@
   cursor: pointer;
   line-height: 0;
 }
+.login > button:hover {
+  transition: 0.2s;
+  background-color: #72bd96;
+}
 .login > p {
   font-style: normal;
 }
@@ -129,6 +133,10 @@
   line-height: 0;
   background-color: #83d7ac;
   cursor: pointer;
+}
+.signup_section > button:hover {
+  transition: 0.2s;
+  background-color: #72bd96;
 }
 .signup_section > p {
   font-style: normal;
@@ -174,6 +182,12 @@
   text-decoration: none;
   color: #5d5d5d;
 }
+.section_profile { 
+  display: flex;
+  width: 60%;
+  margin-left: 20%;
+  justify-content: space-between;
+}
 @media screen and (max-width: 425px) {
   /* адаптив главной страницы*/
   .homepage_section {
@@ -217,5 +231,8 @@
   }
   .login {
     text-align: center;
+  }
+  .section_profile {
+    margin-left: 10%;
   }
 }
