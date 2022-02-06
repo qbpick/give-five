@@ -19,6 +19,11 @@ export const Header = () => {
             </Link>
           </li>
           <li>
+            <Link className={style.header_list_link} to="/messanger">
+              Мессенджер
+            </Link>
+          </li>
+          <li>
             <Link className={style.header_list_link} to="/QnA">
               Вопросы-ответы
             </Link>
@@ -39,7 +44,7 @@ export const Header = () => {
             </Link>
           </li>
           <li>
-            <Link to="/profile/tests" className={style.header_list_link}>
+            <Link className={style.header_list_link} to="/profile/tests">
               Тесты
             </Link>
           </li>
@@ -60,6 +65,9 @@ export const Header = () => {
         </Link>
         <Link className={style.header_list_link} to="/profile/infouser">
           Профиль
+        </Link>
+        <Link className={style.header_list_link} to="/messanger">
+          Мессенджер
         </Link>
       </div>
     </header>

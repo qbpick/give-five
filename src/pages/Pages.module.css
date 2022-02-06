@@ -182,11 +182,127 @@
   text-decoration: none;
   color: #5d5d5d;
 }
-.section_profile { 
+.section_profile {
   display: flex;
   width: 60%;
   margin-left: 20%;
   justify-content: space-between;
+}
+/* Мессенджер */
+.dialogs_user {
+  width: 20%;
+  max-height: 55vh;
+  border-radius: 10px;
+  border: solid 1px #83d7ac;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  overflow-y: scroll;
+}
+.dialogs_user::-webkit-scrollbar {
+  overflow: hidden;
+}
+.dialogs_user > p {
+  font-style: normal;
+  font-size: 1.3em;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 5px;
+  outline: 0;
+  margin-left: 20px;
+  margin-top: 3px;
+}
+.dialogs_user > p:hover {
+  transition: 0.25s;
+  background-color: #5d5d5d2f;
+}
+.section_messanger {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+.messanger_box {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+}
+.box_messanger {
+  width: 80vh;
+  min-height: 55vh;
+  border-radius: 10px;
+  border: solid 1px #83d7ac;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.box_messanger > p {
+  font-size: 1.5em;
+  font-style: normal;
+  margin: 5px;
+}
+.dialog_messanger {
+  width: 80%;
+  min-height: 35vh;
+  max-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+.dialog_messanger::-webkit-scrollbar {
+  overflow: hidden;
+}
+.title_message {
+  display: flex;
+  align-items: flex-end;
+  font-size: 1.1em;
+}
+.title_message > p {
+  font-style: normal;
+}
+.text_message {
+  font-style: normal;
+  font-size: 1.1em;
+}
+.name_user__message {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.send_message {
+  display: flex;
+  margin-bottom: 5px;
+  width: 100%;
+  justify-content: space-around;
+}
+.send_message > textarea {
+  overflow-y: hidden;
+  border-radius: 5px;
+  border: solid 1px #dddddd;
+  font-size: 1em;
+  color: rgb(0, 0, 0);
+  width: 50vh;
+  height: 5vh;
+  font-style: normal;
+  padding: 10px;
+  resize: none;
+}
+.send_message > button {
+  width: 15vh;
+  align-self: center;
+  height: 5vh;
+  font-size: 1.2em;
+  font-style: normal;
+  color: rgb(255, 255, 255);
+  border: none;
+  line-height: 0;
+  background-color: #83d7ac;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.send_message > button:hover {
+  transition: 0.2s;
+  background-color: #72bd96;
 }
 @media screen and (max-width: 425px) {
   /* адаптив главной страницы*/
@@ -235,4 +351,5 @@
   .section_profile {
     margin-left: 10%;
   }
+  /* адаптив мессенджера */
 }

@@ -8,6 +8,7 @@ import { Signup } from "./pages/Signup";
 import { Tests } from "./pages/ProfileUser/Tests";
 import { InfoUser } from "./pages/ProfileUser/InfoUser";
 import { Profile } from "./pages/Profile";
+import { Messanger } from "./pages/Messanger";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="feedback" element={<Feedback />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="messanger" element={<Messanger />} />
         </Route>
         <Route path="/profile" element={<Profile />}>
           <Route path="infouser" element={<InfoUser />} />

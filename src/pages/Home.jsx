@@ -32,7 +32,7 @@ export const Home = () => {
         </div>
         <div className={style.section_card}>
           <img src={image_card_4} alt="1imgcard" />
-          <p>Найти новых друзей</p>
+          <p>Когда мы в клубе чиксы танцуют пусть город знает с кем он тусует</p>
         </div>
         <div className={style.section_card}>
           <img src={image_card_5} alt="1imgcard" />
