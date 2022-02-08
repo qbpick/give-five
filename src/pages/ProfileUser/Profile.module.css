@@ -169,6 +169,10 @@ select > option {
   transition: 0.2s;
   background-color: #72bd96;
 }
+.link_button {
+  text-decoration: none;
+  color: white;
+}
 @media screen and (max-width: 425px) {
   .profile_user_content {
     width: 50vh;

@@ -2,6 +2,7 @@ import style from "./Profile.module.css";
 import icon_danger from "./attentn.png";
 
 export const InfoUser = () => {
+  
   return (
     <section>
       <div className={style.profile_user_content}>

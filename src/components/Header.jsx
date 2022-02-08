@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Logo from "../assets/images/logo.png";
 import style from "./Components.module.css";
 
@@ -14,61 +14,61 @@ export const Header = () => {
 
         <ul className={style.menu__box}>
           <li>
-            <Link className={style.header_list_link} to="/">
+            <NavLink className={style.header_list_link} to="/">
               Главная
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className={style.header_list_link} to="/messanger">
+            <NavLink className={style.header_list_link} to="/messanger">
               Мессенджер
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className={style.header_list_link} to="/QnA">
+            <NavLink className={style.header_list_link} to="/QnA">
               Вопросы-ответы
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className={style.header_list_link} to="/feedback">
+            <NavLink className={style.header_list_link} to="/feedback">
               Обратная связь
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className={style.header_list_link} to="/login">
+            <NavLink className={style.header_list_link} to="/login">
               Вход
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className={style.header_list_link} to="/profile/infouser">
+            <NavLink className={style.header_list_link} to="/profile/infouser">
               Профиль
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className={style.header_list_link} to="/profile/tests">
+            <NavLink className={style.header_list_link} to="/profile/tests">
               Тесты
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </div>
       <div className={style.header_list}>
-        <Link className={style.header_list_link} to="/">
+        <NavLink className={style.header_list_link} to="/">
           Главная
-        </Link>
-        <Link className={style.header_list_link} to="/QnA">
+        </NavLink>
+        <NavLink className={style.header_list_link} to="/QnA">
           Вопросы-ответы
-        </Link>
-        <Link className={style.header_list_link} to="/feedback">
+        </NavLink>
+        <NavLink className={style.header_list_link} to="/feedback">
           Обратная связь
-        </Link>
-        <Link className={style.header_list_link} to="/login">
+        </NavLink>
+        <NavLink className={style.header_list_link} to="/login">
           Вход
-        </Link>
-        <Link className={style.header_list_link} to="/profile/infouser">
+        </NavLink>
+        <NavLink className={style.header_list_link} to="/profile">
           Профиль
-        </Link>
-        <Link className={style.header_list_link} to="/messanger">
+        </NavLink>
+        <NavLink className={style.header_list_link} to="/messanger">
           Мессенджер
-        </Link>
+        </NavLink>
       </div>
     </header>
   );

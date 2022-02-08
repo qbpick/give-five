@@ -9,6 +9,7 @@ import { Tests } from "./pages/ProfileUser/Tests";
 import { InfoUser } from "./pages/ProfileUser/InfoUser";
 import { Profile } from "./pages/Profile";
 import { Messanger } from "./pages/Messanger";
+import { Test } from "./pages/Test";
 
 const App = () => {
   return (
@@ -21,10 +22,12 @@ const App = () => {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="messanger" element={<Messanger />} />
-        </Route>
-        <Route path="/profile" element={<Profile />}>
-          <Route path="infouser" element={<InfoUser />} />
-          <Route path="tests" element={<Tests />} />
+          <Route path="profile" element={<Profile />}>
+            <Route path="infouser" element={<InfoUser />} />
+            <Route path="tests" element={<Tests />} />
+            <Route path="tests/:id" element={<Test />} />
+          </Route>
+          <Route path="*" element={<Home />} />
         </Route>
       </Routes>
     </>
