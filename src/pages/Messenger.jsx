@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { NavLink, useSearchParams, createSearchParams } from "react-router-dom";
 
 const dialogs = ["ayayayay", "eeeeee", "dadada"];
@@ -48,7 +49,19 @@ const messages = {
 };
 
 export const Messenger = () => {
+  const [message, setMessage] = useState("");
+
   const [searchParams, setSearchParams] = useSearchParams();
+  const [wsData, setWsData] = useState([]);
+
+  useEffect(() => {
+    window.Echo.channel("messenger").listen("NewMessage", (data) => {
+      console.log(data);
+      setWsData([...wsData, data]);
+      console.log("------------------------------------------------------");
+    });
+    console.log("+++++++++++++++++");
+  }, [wsData, setWsData]);
 
   useEffect(() => {
     const cb = (e) => {
@@ -61,6 +74,23 @@ export const Messenger = () => {
       window.removeEventListener("keydown", cb);
     };
   }, [searchParams, setSearchParams]);
+
+  const handleSubmit = async () => {
+    let data = {
+      dialogId: 1,
+      userId: 1,
+      text: message,
+    };
+    // data = JSON.stringify(data);
+    try {
+      const res = await axios.post("http://127.0.0.1:8000/api/messages", {
+        data
+      });
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -87,6 +117,7 @@ export const Messenger = () => {
               </div>
             </NavLink>
           ))}
+          {JSON.stringify(wsData)}
         </div>
         {searchParams.get("chat") && (
           <div
@@ -116,12 +147,16 @@ export const Messenger = () => {
                   )
                 )
               ) : (
-                <NavLink to="">Создать новый</NavLink>
+                <p>Тут пусто</p>
               )}
             </div>
             <div>
-              <input type="text" />
-              <input type="submit" />
+              <input
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                type="text"
+              />
+              <input onClick={handleSubmit} type="submit" />
             </div>
           </div>
         )}
