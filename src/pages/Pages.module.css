@@ -16,12 +16,15 @@
 }
 .section_card {
   width: 30%;
-  box-shadow: 5px 5px 1px 1px rgba(0, 0, 0, 0.06);
+  background-color: #f5f5f5;
+  margin: 15px;
+  border-radius: 20px;
   font-size: 14pt;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.05);
 }
 .section_card > img {
   width: 220px;
@@ -178,8 +181,12 @@
   align-self: center;
   font-size: 1.2em;
 }
-.section_feedback > p > a {
+.section_feedback > p > a,
+.section_feedback > p > p {
   text-decoration: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  display: inline;
   color: #5d5d5d;
 }
 .section_profile {
@@ -193,11 +200,12 @@
   width: 20%;
   max-height: 55vh;
   border-radius: 10px;
-  border: solid 1px #83d7ac;
+  background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
   text-align: center;
   overflow-y: scroll;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.03);
 }
 .dialogs_user::-webkit-scrollbar {
   overflow: hidden;
@@ -231,26 +239,27 @@
   width: 80vh;
   min-height: 55vh;
   border-radius: 10px;
-  border: solid 1px #83d7ac;
+  background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.03);
 }
 .box_messanger > p {
   font-size: 1.5em;
   font-style: normal;
   margin: 5px;
 }
-.dialog_messanger {
+.dialog_box {
   width: 80%;
   min-height: 35vh;
   max-height: 40vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   overflow-y: scroll;
 }
-.dialog_messanger::-webkit-scrollbar {
+.dialog_box::-webkit-scrollbar {
   overflow: hidden;
 }
 .title_message {
@@ -313,7 +322,7 @@
   min-height: 50vh;
   justify-content: space-between;
 }
-.section_test > h2{
+.section_test > h2 {
   font-style: normal;
 }
 .link_button {
@@ -321,17 +330,18 @@
   color: white;
   line-height: normal;
   font-style: normal;
-} 
+}
 .test_quetion {
   width: 60%;
   min-height: 5vh;
-  border: solid 1px #83d7ac;
+  background-color: #f5f5f5;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 2vh;
   margin-top: 5vh;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.05);
 }
 .test_quetion > p {
   font-size: 1.2em;
@@ -352,7 +362,7 @@
   cursor: pointer;
   border-radius: 10px;
   margin-top: 10px;
-  margin-right  : 20%;
+  margin-right: 20%;
 }
 .end_test_button:hover {
   transition: 0.2s;
@@ -451,7 +461,6 @@
     margin-left: 10%;
   }
   /* адаптив мессенджера */
-
 
   /* адаптив теста */
   .test_quetion {

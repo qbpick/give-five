@@ -1,7 +1,8 @@
 import style from "./Profile.module.css";
-import icon_danger from "./attentn.png";
+// import icon_danger from "./attentn.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import icon_danger from "../../assets/images/attentn.png";
 
 export const InfoUser = () => {
   const [userData, setUserData] = useState({});

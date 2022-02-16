@@ -15,7 +15,7 @@ header {
   justify-content: space-between;
   align-items: center;
   align-self: center;
-  width: 100vh;
+  width: 60%;
 }
 .header_list_link {
   text-decoration: none;
@@ -37,7 +37,7 @@ footer {
   background-color: #83d7ac;
   height: 20vh;
 }
-footer > img {
+footer > img, footer > a > img {
   width: 60px;
   height: 50px;
 }
@@ -160,6 +160,69 @@ li > ul {
 .navmenu_link:focus {
   border-bottom: solid 1px #5d5d5d;
 }
+
+/* Ответка в тесте */
+
+.task_section {
+  width: 50vh;
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: 20px;
+  padding: 20px;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1);
+}
+.answer_input {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 20px;
+}
+.answer_input > input[type="text"] {
+  height: 30px;
+  font-size: 18px;
+  padding: 5px;
+  width: 200px;
+  border: solid 1px #5d5d5d;
+  outline: none;
+  border-radius: 5px;
+}
+.task_section > button {
+  width: 20vh;
+  align-self: center;
+  height: 30px;
+  font-size: 1.2em;
+  font-style: normal;
+  color: rgb(255, 255, 255);
+  border: none;
+  line-height: 0;
+  background-color: #83d7ac;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+.title_task {
+  width: 80%;
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+}
+.title_task > span {
+  font-size: 1.1em
+}
+.title_task > input {
+  height: 30px;
+  font-size: 18px;
+  padding: 5px;
+  width: 200px;
+  border: solid 1px #5d5d5d;
+  outline: none;
+  border-radius: 5px;
+}
+
 @media screen and (max-width: 425px) {
   .header_list {
     display: none;

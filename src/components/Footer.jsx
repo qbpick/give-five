@@ -9,8 +9,8 @@ import soc_icon_6 from "../assets/images/soc_icons/2.png";
 export const Footer = () => {
   return <footer>
     <p>test@high-five.site</p>
-    <img src={soc_icon_1} alt="inst" />
-    <img src={soc_icon_2} alt="vk" />
+    <a target="_blank" href="https://vk.com/highfive30"><img src={soc_icon_1} alt="inst" /></a>
+    <a target="_blank" href="https://www.instagram.com/dai5_school/"><img src={soc_icon_2} alt="vk" /></a>
     <img src={soc_icon_3} alt="foot_3" className={style.footer_icons_small}/>
     <img src={soc_icon_4} alt="foot_4" className={style.footer_icons_small}/>
     <img src={soc_icon_5} alt="foot_5" className={style.footer_icons_small}/>

@@ -23,7 +23,7 @@ export const Test = () => {
     {
       test_id: 4,
       test_quetion: "А вы знаете, кто такой айтипедия?",
-      test_answers: ["Даа", "Неет"],
+      test_answers: ["Да", "Нет"],
     },
   ];
 
@@ -34,8 +34,7 @@ export const Test = () => {
         <div className={style.test_quetion}>
           <p>Вопрос №{item.test_id}</p>
           <p>{item.test_quetion}</p>
-          {item.test_answers.map((answer) => (
-            
+          {item.test_answers.map((answer, index) => (
             <div className={style.answer}>
               <input type="checkbox" id={answer} />
               <label htmlFor={answer}>{answer}</label>

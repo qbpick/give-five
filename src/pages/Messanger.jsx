@@ -20,15 +20,17 @@ export const Messanger = () => {
         </div>
         <div className={style.box_messanger}>
           <p>Виталий крутыш</p>
-          <div className={style.dialog_messanger}>
-            <div className={style.message}>
-              <div className={style.title_message}>
-                <p className={style.name_user__message}>Никита </p>&nbsp;
-                <p>23:24</p>
-              </div>
-              <p className={style.text_message}>
-                когда мы в клубе чиксы танцуют
-              </p>
+          <div className={style.dialog_box}>
+            <div>
+              {/* <div className={style.message}>
+                <div className={style.title_message}>
+                  <p className={style.name_user__message}>Никита </p>&nbsp;
+                  <p>23:24</p>
+                </div>
+                <p className={style.text_message}>
+                  когда мы в клубе чиксы танцуют ферст
+                </p>
+              </div> */}
             </div>
           </div>
           <div className={style.send_message}>
