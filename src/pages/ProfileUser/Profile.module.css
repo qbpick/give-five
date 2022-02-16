@@ -1,0 +1,225 @@
+.profile_user_content {
+  width: 70vh;
+  min-height: 60vh;
+  border: solid 1px #83d7ac;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: space-between;
+}
+.info_pictures_and_fio {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+}
+.info_pictures_and_fio > img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.info_pictures_and_fio > input {
+  width: 150px;
+  height: 20px;
+  border: none;
+  background: none;
+  outline: none;
+  border-bottom: 1px solid #5d5d5d;
+  color: #3b3b3b;
+  font-size: 1.1em;
+  padding: 5px;
+}
+.profile_user_content > input {
+  width: 250px;
+  height: 20px;
+  border: none;
+  background: none;
+  outline: none;
+  border-bottom: 1px solid #5d5d5d;
+  color: #3b3b3b;
+  font-size: 1.1em;
+  padding: 5px;
+}
+.profile_user_button {
+  width: 50vh;
+  align-self: center;
+  height: 5vh;
+  font-size: 1.2em;
+  font-style: normal;
+  color: rgb(255, 255, 255);
+  border: none;
+  line-height: 0;
+  background-color: #83d7ac;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.profile_user_button:hover {
+  transition: 0.2s;
+  background-color: #72bd96;
+}
+.profile_user_confirm__email > img {
+  width: 25px;
+  height: 25px;
+}
+.profile_user_confirm__email {
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(238, 169, 21, 0.884);
+  align-items: center;
+}
+.profile_user_confirm__email > p {
+  font-size: 1em;
+  font-style: normal;
+}
+.profile_user_confirm__email > button {
+  height: 30px;
+  border: solid 1px black;
+  cursor: pointer;
+  width: 20vh;
+  font-size: 1em;
+  font-style: normal;
+  color: black;
+  background: rgb(255, 226, 89);
+  border-radius: 10px;
+}
+.profile_user_confirm__email > button:hover {
+  transition: 0.2s;
+  background: rgb(223, 198, 76);
+}
+.section_tests {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.find_test {
+  width: 80vh;
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.find_test > button {
+  width: 20vh;
+  align-self: center;
+  height: 5vh;
+  font-size: 1.2em;
+  font-style: normal;
+  color: rgb(255, 255, 255);
+  border: none;
+  line-height: 0;
+  background-color: #83d7ac;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.find_test > button:disabled {
+  background-color: #83d7ac6b;
+}
+.tests_select > select {
+  border: solid 1px black;
+  width: 20vh;
+  height: 40px;
+  font-style: normal;
+  outline: none;
+  font-size: 1.2em;
+  border-radius: 10px;
+}
+select > option {
+  font-style: normal;
+}
+.tests_select {
+  display: flex;
+  width: 50vh;
+  justify-content: space-between;
+
+}
+.block_test {
+  width: 80vh;
+  font-size: 1.2em;
+  height: 10vh;
+  border: solid 1px #83d7ac;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.block_test > p {
+  font-style: normal;
+}
+.block_test > button {
+  width: 15vh;
+  align-self: center;
+  height: 5vh;
+  font-size: 1.2em;
+  font-style: normal;
+  color: rgb(255, 255, 255);
+  border: none;
+  line-height: 0;
+  background-color: #83d7ac;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.block_test > button:hover {
+  transition: 0.2s;
+  background-color: #72bd96;
+}
+.link_button {
+  text-decoration: none;
+  color: white;
+}
+@media screen and (max-width: 425px) {
+  .profile_user_content {
+    width: 50vh;
+    padding: 0px;
+    height: 80vh;
+    justify-content: space-around;
+  }
+  .info_pictures_and_fio > input {
+    width: 200px;
+  }
+  .info_pictures_and_fio {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 150px;
+  }
+  .profile_user_content > input {
+    width: 200px;
+    align-self: center;
+  }
+  .profile_user_button {
+    width: 200px;
+  }
+  .profile_user_confirm__email {
+    height: 20vh;
+    background: none;
+    flex-direction: column;
+    text-align: center;
+  }
+  .profile_user_confirm__email > button {
+    width: 200px;
+  }
+  .tests_select {
+    flex-direction: column;
+    align-items: center;
+    height: 20vh;
+  }
+  .block_test {
+    width: 50vh;
+    height: 50vh;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  .find_test {
+    height: 30vh;
+    width: 60vh;
+  }
+  .section_tests {
+    margin-left: 20%;
+  }
+}
