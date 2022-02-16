@@ -1,7 +1,9 @@
 .profile_user_content {
   width: 70vh;
   min-height: 60vh;
-  border: solid 1px #83d7ac;
+  /* border: solid 1px #83d7ac; */
+  box-shadow: 8px 16px 16px hsl(0deg 0% 0% / 0.25);
+  /* box-shadow: 1.1px 2.2px 2.2px hsl(0deg 0% 0% / 0.47); */
   border-radius: 25px;
   display: flex;
   flex-direction: column;
@@ -136,7 +138,6 @@ select > option {
   display: flex;
   width: 50vh;
   justify-content: space-between;
-
 }
 .block_test {
   width: 80vh;

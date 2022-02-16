@@ -1,17 +1,49 @@
 import style from "./Profile.module.css";
 import icon_danger from "./attentn.png";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export const InfoUser = () => {
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.get("/user");
+        console.log(res);
+        setUserData(res);
+        // window.localStorage.setItem("user", res.data.personal_data.user_id);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, [userData, setUserData]);
+
   return (
     <section>
       <div className={style.profile_user_content}>
         <div className={style.info_pictures_and_fio}>
           <img src={icon_danger} alt="" />
-          <input type="text" name="first_name" placeholder="Имя" />
-          <input type="text" name="last_name" placeholder="Фамилия" />
-          <input type="text" name="middle_name" placeholder="Попка" />
+          <input
+            defaultValue={userData.first_name}
+            type="text"
+            name="first_name"
+            placeholder="Имя"
+          />
+          <input
+            defaultValue={userData.last_name}
+            type="text"
+            name="last_name"
+            placeholder="Фамилия"
+          />
+          <input
+            defaultValue={userData.middle_name}
+            type="text"
+            name="middle_name"
+            placeholder="Отчество"
+          />
         </div>
-        <input type="email" name="email" placeholder="maksimkuranov@" />
+        <input type="email" name="email" placeholder="example@mail.com" />
         <input type="password" name="email" placeholder="Изменить пароль" />
         <button className={style.profile_user_button}>
           Сохранить изменения
