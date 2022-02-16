@@ -1,0 +1,113 @@
+span {
+  font-style: normal;
+  font-size: 18px;
+}
+.section_info {
+  width: 70vh;
+  min-height: 60vh;
+  background-color: #f5f5f5;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: space-around;
+}
+.section_info > input {
+  width: 250px;
+  height: 20px;
+  border: none;
+  background: none;
+  outline: none;
+  border-bottom: 1px solid #5d5d5d;
+  color: #3b3b3b;
+  font-size: 1.1em;
+  padding: 5px;
+}
+.section_info > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.info_pictures_and_fio {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+}
+.info_pictures_and_fio > img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.info_pictures_and_fio > input {
+  width: 150px;
+  height: 20px;
+  border: none;
+  background: none;
+  outline: none;
+  border-bottom: 1px solid #5d5d5d;
+  color: #3b3b3b;
+  font-size: 1.1em;
+  padding: 5px;
+}
+.section_info > div > textarea {
+  border-radius: 5px;
+  border: solid 1px #dddddd;
+  font-size: 1em;
+  color: rgb(0, 0, 0);
+  width: 50vh;
+  height: 15vh;
+  font-style: normal;
+  padding: 10px;
+  resize: none;
+  outline: none;
+}
+.profile_expert_button {
+  width: 50vh;
+  align-self: center;
+  height: 5vh;
+  font-size: 1.2em;
+  font-style: normal;
+  color: rgb(255, 255, 255);
+  border: none;
+  line-height: 0;
+  background-color: #83d7ac;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.profile_expert_button:hover {
+  transition: 0.2s;
+  background-color: #72bd96;
+}
+.profile_user_confirm__email > img {
+  width: 25px;
+  height: 25px;
+}
+.profile_user_confirm__email {
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(238, 169, 21, 0.884);
+  align-items: center;
+}
+.profile_user_confirm__email > p {
+  font-size: 1em;
+  font-style: normal;
+}
+.profile_user_confirm__email > button {
+  height: 30px;
+  border: solid 1px black;
+  cursor: pointer;
+  width: 20vh;
+  font-size: 1em;
+  font-style: normal;
+  color: black;
+  background: rgb(255, 226, 89);
+  border-radius: 10px;
+}
+.profile_user_confirm__email > button:hover {
+  transition: 0.2s;
+  background: rgb(223, 198, 76);
+}

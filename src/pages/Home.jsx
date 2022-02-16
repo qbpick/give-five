@@ -5,7 +5,6 @@ import image_card_3 from "../assets/images/opportunity-3.png";
 import image_card_4 from "../assets/images/opportunity-4.png";
 import image_card_5 from "../assets/images/opportunity-5.png";
 import image_card_6 from "../assets/images/opportunity-6.png";
-import image_slide from "../assets/images/O0WDcGN8wII.jpg";
 
 export const Home = () => {
   return (
@@ -32,7 +31,7 @@ export const Home = () => {
         </div>
         <div className={style.section_card}>
           <img src={image_card_4} alt="1imgcard" />
-          <p>Когда мы в клубе чиксы танцуют пусть город знает с кем он тусует</p>
+          <p>Найти новых друзей</p>
         </div>
         <div className={style.section_card}>
           <img src={image_card_5} alt="1imgcard" />
@@ -43,13 +42,13 @@ export const Home = () => {
           <p>Стать экспертом</p>
         </div>
       </section>
-      <section className={style.homepage_news}>
+      {/* <section className={style.homepage_news}>
         <h2>Новости</h2>
         <div className={style.homepage_news__slider}>
           <img src={image_slide} alt="slide1" />
           <input type="radio" />
         </div>
-      </section>
+      </section> */}
     </section>
   );
 };

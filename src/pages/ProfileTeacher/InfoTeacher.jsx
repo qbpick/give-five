@@ -1,11 +1,11 @@
-import style from "./Profile.module.css";
+import style from "./ProfileTeacher.module.css";
 import icon_danger from "../../assets/images/attentn.png";
 
-export const InfoUser = () => {
+export const InfoTeacher = () => {
   
   return (
     <section>
-      <div className={style.profile_user_content}>
+      <div className={style.profile_teacher_content}>
         <div className={style.info_pictures_and_fio}>
           <img src={icon_danger} alt="" />
           <input type="text" name="first_name" value="Имя" />

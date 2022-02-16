@@ -19,6 +19,9 @@ code {
   font-weight: 500;
   font-style: italic;
 }
+body {
+  background-color: #edeef0;
+}
 .active {
   background-color: #5d5d5d2f;
 }

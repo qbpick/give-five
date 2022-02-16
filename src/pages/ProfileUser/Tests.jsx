@@ -29,7 +29,7 @@ export const Tests = () => {
   console.log();
   return (
     <section className={style.section_tests}>
-      <h2 onClick={() => console.log(array[1])}>Поиск теста</h2>
+      <h2>Поиск теста</h2>
       <div className={style.find_test}>
         <div className={style.tests_select}>
           <select name="subject" onChange={changeSubject}>
