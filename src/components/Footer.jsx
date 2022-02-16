@@ -15,6 +15,8 @@ export const Footer = () => {
     <img src={soc_icon_4} alt="foot_4" className={style.footer_icons_small}/>
     <img src={soc_icon_5} alt="foot_5" className={style.footer_icons_small}/>
     <img src={soc_icon_6} alt="foot_6" className={style.footer_icons_small}/>
-    <p>&copy;Дебилы корпорейшн 2022</p>
+    {/* <p>&copy;Дебилы корпорейшн 2022</p> */}
+    <p>&copy;Дай В Жопу 2022 <br/> ну пожалуйста</p>
+    
   </footer>;
 };

@@ -13,15 +13,15 @@ export const ProfileAdmin = () => {
       </div>
       <div className={style.tests_list_to_access}>
         <div className={style.block_test}>
-          <p>Имя: {"Максим"}</p>
-          <p>Фамилия: {"Роздольский"}</p>
+          <p>Имя: {"мИША"}</p>
+          <p>Фамилия: {"ГЕй"}</p>
           <p>Роль: {"Пользователь"}</p>
           <button>{"Дать учителя"}</button>
           <button>{"Дать эксперта"}</button>
         </div>
         <div className={style.block_test}>
-          <p>Имя: {"Андрей"}</p>
-          <p>Фамилия: {"Куранов"}</p>
+          <p>Имя: {"МИШа"}</p>
+          <p>Фамилия: {"геЙ"}</p>
           <p>Роль: {"Эксперт"}</p>
           <button>{"Дать юзера"}</button>
           <button>{"Дать учителя"}</button>

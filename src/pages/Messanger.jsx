@@ -1,22 +1,62 @@
+import { useEffect, useState } from "react";
+import { createSearchParams, NavLink, useSearchParams } from "react-router-dom";
 import style from "./Pages.module.css";
 
 export const Messanger = () => {
+  const [message, setMessage] = useState("");
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [wsData, setWsData] = useState([]);
+  useEffect(() => {
+    const cb = (e) => {
+      if (e.key === "Escape") {
+        setSearchParams({});
+      }
+    };
+    window.addEventListener("keydown", cb);
+    return () => {
+      window.removeEventListener("keydown", cb);
+    };
+  }, [searchParams, setSearchParams]);
   return (
     <section className={style.section_messanger}>
       <div className={style.messanger_box}>
         <div className={style.dialogs_user}>
-          <p>Серега</p>
-          <p>НИкита</p>
-          <p>БорИс)</p>
-          <p>Серега</p>
-          <p>НИкита</p>
-          <p>БорИс)</p>
-          <p>Серега</p>
-          <p>НИкита</p>
-          <p>БорИс)</p>
-          <p>Серега</p>
-          <p>НИкита</p>
-          <p>БорИс)</p>
+          <NavLink
+            // to={`?chat=${el}`}
+            to={`?${createSearchParams({ chat: "Серега" })}`}
+            className={() =>
+              "Серега" === searchParams.get("chat") ? "active" : ""
+            }
+            // style={() => ({
+            //   color: "Серега" === searchParams.get("chat") ? "green" : "red",
+            // })}
+            key={"Серега"}
+          >
+            Серега
+          </NavLink>
+          <NavLink
+            to={`?${createSearchParams({ chat: "Никита" })}`}
+            className={() =>
+              "Никита" === searchParams.get("chat") ? "active" : ""
+            }
+            // style={() => ({
+            //   color: "Серега" === searchParams.get("chat") ? "green" : "red",
+            // })}
+            key={"Никита"}
+          >
+            НИкита
+          </NavLink>
+          <NavLink to="q">БорИс)</NavLink>
+          <NavLink to="q">Серега</NavLink>
+          <NavLink to="q">НИкита</NavLink>
+          <NavLink to="q">БорИс)</NavLink>
+          <NavLink to="q">Серега</NavLink>
+          <NavLink to="q">НИкита</NavLink>
+          <NavLink to="q">БорИс)</NavLink>
+          <NavLink to="q">Серега</NavLink>
+          <NavLink to="q">НИкита</NavLink>
+          <NavLink to="q">БорИс)</NavLink>
         </div>
         <div className={style.box_messanger}>
           <p>Виталий крутыш</p>

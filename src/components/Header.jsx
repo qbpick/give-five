@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Logo from "../assets/images/logo.png";
 import style from "./Components.module.css";
-
+window.localStorage.setItem("token", JSON.stringify({ token: "zalupa" }));
 export const Header = () => {
   return (
     <header>
@@ -33,21 +33,30 @@ export const Header = () => {
               Обратная связь
             </NavLink>
           </li>
-          <li>
-            <NavLink className={style.header_list_link} to="/login">
-              Вход
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className={style.header_list_link} to="/profile/infouser">
-              Профиль
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className={style.header_list_link} to="/profile/tests">
-              Тесты
-            </NavLink>
-          </li>
+
+          {JSON.parse(window.localStorage.getItem("token"))?.token ? (
+            <>
+              <li>
+                <NavLink
+                  className={style.header_list_link}
+                  to="/profile/infouser"
+                >
+                  Профиль
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className={style.header_list_link} to="/profile/tests">
+                  Тесты
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <li>
+              <NavLink className={style.header_list_link} to="/login">
+                Вход
+              </NavLink>
+            </li>
+          )}
         </ul>
       </div>
       <div className={style.header_list}>
@@ -60,15 +69,21 @@ export const Header = () => {
         <NavLink className={style.header_list_link} to="/feedback">
           Обратная связь
         </NavLink>
-        <NavLink className={style.header_list_link} to="/login">
-          Вход
-        </NavLink>
-        <NavLink className={style.header_list_link} to="/profile">
-          Профиль
-        </NavLink>
-        <NavLink className={style.header_list_link} to="/messanger">
-          Мессенджер
-        </NavLink>
+
+        {JSON.parse(window.localStorage.getItem("token"))?.token ? (
+          <>
+            <NavLink className={style.header_list_link} to="/profile">
+              Профиль
+            </NavLink>
+            <NavLink className={style.header_list_link} to="/messanger">
+              Мессенджер
+            </NavLink>
+          </>
+        ) : (
+          <NavLink className={style.header_list_link} to="/login">
+            Вход
+          </NavLink>
+        )}
       </div>
     </header>
   );

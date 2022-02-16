@@ -210,7 +210,7 @@
 .dialogs_user::-webkit-scrollbar {
   overflow: hidden;
 }
-.dialogs_user > p {
+.dialogs_user > a {
   font-style: normal;
   font-size: 1.3em;
   cursor: pointer;
@@ -219,8 +219,10 @@
   outline: 0;
   margin-left: 20px;
   margin-top: 3px;
+  color: #000;
+  text-decoration: none;
 }
-.dialogs_user > p:hover {
+.dialogs_user > a:hover {
   transition: 0.25s;
   background-color: #5d5d5d2f;
 }

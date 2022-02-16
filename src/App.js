@@ -33,9 +33,9 @@ const App = () => {
           <Route path="profile" element={<Profile />}>
             <Route path="infoexpert" element={<InfoExpert />} /> {/* Профиль эксперта */}
             <Route path="infoteacher" element={<InfoTeacher />} /> {/* Профиль Учителя */}
-            <Route path="create_test" element={<CreateTest />} /> {/* Создание теста */}
-            <Route path="give_access_test" element={<GiveAccessTest />} /> {/* Дать доступ к тесту */}
-            <Route path="give_permission_user" element={<ProfileAdmin />} /> {/* Дать роль пользователю */}
+            <Route path="create_test" element={<CreateTest />} /> {/* Создание теста  учитель*/}
+            <Route path="give_access_test" element={<GiveAccessTest />} /> {/* Дать доступ к тесту учитель*/}
+            <Route path="give_permission_user" element={<ProfileAdmin />} /> {/* Дать роль пользователю  админ*/}
             <Route path="find_expert" element={<FindExpert />} />
             <Route path="infouser" element={<InfoUser />} />
             <Route path="tests" element={<Tests />} />
