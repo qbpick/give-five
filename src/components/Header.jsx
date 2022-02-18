@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Logo from "../assets/images/logo.png";
 import style from "./Components.module.css";
-window.localStorage.setItem("token", JSON.stringify({ token: "zalupa" }));
+// window.localStorage.setItem("token", JSON.stringify({ token: "zalupa" }));
 export const Header = () => {
   return (
     <header>
@@ -34,7 +34,8 @@ export const Header = () => {
             </NavLink>
           </li>
 
-          {JSON.parse(window.localStorage.getItem("token"))?.token ? (
+          {window.localStorage.getItem("token") &&
+          JSON.parse(window.localStorage.getItem("token"))?.token ? (
             <>
               <li>
                 <NavLink
@@ -70,7 +71,8 @@ export const Header = () => {
           Обратная связь
         </NavLink>
 
-        {JSON.parse(window.localStorage.getItem("token"))?.token ? (
+        {window.localStorage.getItem("token") &&
+        JSON.parse(window.localStorage.getItem("token"))?.token ? (
           <>
             <NavLink className={style.header_list_link} to="/profile">
               Профиль

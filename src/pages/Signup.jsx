@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import style from "./Pages.module.css";
 
 export const Signup = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState({
     first_name: "",
     last_name: "",
@@ -11,14 +12,20 @@ export const Signup = () => {
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(data);
+    const reqData = JSON.stringify(data);
     try {
-      const res = await axios.post("/register", { data });
+      const res = await axios.post("https://high-five.site/api/register", {
+        reqData,
+      });
       console.log(res);
+      navigate("/login");
     } catch (error) {
-      console.log(error);
+      console.log(error.error);
+      setError(error.error.message);
     }
   };
 
@@ -71,6 +78,7 @@ export const Signup = () => {
           value={data.password}
           onChange={(e) => setData({ ...data, password: e.target.value })}
         />
+        {error}
         <button type="submit">Зарегистрироваться</button>
         <p>
           Уже имеется аккаунт? &nbsp;

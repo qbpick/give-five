@@ -5,8 +5,21 @@ import image_card_3 from "../assets/images/opportunity-3.png";
 import image_card_4 from "../assets/images/opportunity-4.png";
 import image_card_5 from "../assets/images/opportunity-5.png";
 import image_card_6 from "../assets/images/opportunity-6.png";
+import { useEffect } from "react";
+import axios from "axios";
 
 export const Home = () => {
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.get("https://high-five.site/api/info");
+        console.log(res);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }, []);
+
   return (
     <section className={style.homepage}>
       <h1>С нами ты можешь</h1>

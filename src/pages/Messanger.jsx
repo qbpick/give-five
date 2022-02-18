@@ -59,7 +59,7 @@ export const Messanger = () => {
           <NavLink to="q">БорИс)</NavLink>
         </div>
         <div className={style.box_messanger}>
-          <p>Виталий крутыш</p>
+          <p>Виталий</p>
           <div className={style.dialog_box}>
             <div>
               {/* <div className={style.message}>

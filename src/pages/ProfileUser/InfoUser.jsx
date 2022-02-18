@@ -6,16 +6,17 @@ import icon_danger from "../../assets/images/attentn.png";
 
 export const InfoUser = () => {
   const [userData, setUserData] = useState({});
+ 
 
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get("/user");
+        const res = await axios.get("https://high-five.site/api/user/info");
         console.log(res);
         setUserData(res);
         // window.localStorage.setItem("user", res.data.personal_data.user_id);
       } catch (err) {
-        console.log(err);
+        console.log(err.error);
       }
     })();
   }, [userData, setUserData]);

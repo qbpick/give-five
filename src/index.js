@@ -12,7 +12,7 @@ window.Pusher = require("pusher-js");
 window.Echo = new Echo({
   broadcaster: "pusher",
   key: "local",
-  wsHost: "127.0.0.1",
+  wsHost: "high-five.site",
   cluster: "mt1",
   wsPort: 6001,
 
