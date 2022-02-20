@@ -5,27 +5,29 @@ import style from "./Pages.module.css";
 
 export const Signup = () => {
   const navigate = useNavigate();
-  const [data, setData] = useState({
+  const [form, setForm] = useState({
     first_name: "",
     last_name: "",
     middle_name: "",
     email: "",
     password: "",
   });
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
-    const reqData = JSON.stringify(data);
+    console.log(form);
     try {
-      const res = await axios.post("https://high-five.site/api/register", {
-        reqData,
-      });
+      const res = await axios.post(
+        "https://high-five.site/api/register",
+        form,
+        { withCredentials: true }
+      );
       console.log(res);
       navigate("/login");
+      setError(false);
     } catch (error) {
-      console.log(error.error);
-      setError(error.error.message);
+      console.log(error);
+      setError(true);
     }
   };
 
@@ -39,8 +41,8 @@ export const Signup = () => {
           placeholder="Введите Имя"
           name="first_name"
           required
-          value={data.first_name}
-          onChange={(e) => setData({ ...data, first_name: e.target.value })}
+          value={form.first_name}
+          onChange={(e) => setForm({ ...form, first_name: e.target.value })}
         />
         <input
           className={style.input_text_auth}
@@ -48,8 +50,8 @@ export const Signup = () => {
           placeholder="Введите Фамилию"
           name="last_name"
           required
-          value={data.last_name}
-          onChange={(e) => setData({ ...data, last_name: e.target.value })}
+          value={form.last_name}
+          onChange={(e) => setForm({ ...form, last_name: e.target.value })}
         />
         <input
           className={style.input_text_auth}
@@ -57,8 +59,8 @@ export const Signup = () => {
           placeholder="Введите Отчество"
           name="middle_name"
           required
-          value={data.middle_name}
-          onChange={(e) => setData({ ...data, middle_name: e.target.value })}
+          value={form.middle_name}
+          onChange={(e) => setForm({ ...form, middle_name: e.target.value })}
         />
         <input
           className={style.input_text_auth}
@@ -66,19 +68,22 @@ export const Signup = () => {
           placeholder="Введите E-mail"
           name="email"
           required
-          value={data.email}
-          onChange={(e) => setData({ ...data, email: e.target.value })}
+          value={form.email}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
         />
         <input
           className={style.input_text_auth}
           type="password"
+          autoComplete="on"
           placeholder="Введите Пароль"
           name="password"
           required
-          value={data.password}
-          onChange={(e) => setData({ ...data, password: e.target.value })}
+          value={form.password}
+          onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
-        {error}
+        {error && (
+          <span style={{ color: "red" }}>Не верно введены данные.</span>
+        )}
         <button type="submit">Зарегистрироваться</button>
         <p>
           Уже имеется аккаунт? &nbsp;

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./Profile.module.css";
@@ -21,10 +22,21 @@ export const Tests = () => {
   const [disable, setDisable] = useState(true);
 
   useEffect(() => {
-    
+    (async () => {
+      try {
+        const res = await axios.get(
+          "https://high-five.site/api/user/find_tests",
+          { withCredentials: true }
+        );
+        console.log(res.data.data);
+        setTest(res.data.data.items);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
   }, []);
 
-  const changeSubject = (e) => {
+  const changeSubject = async (e) => {
     if (e.target.value === "Выберите предмет") {
       setTest({});
       setDisable(true);
@@ -32,20 +44,20 @@ export const Tests = () => {
     }
     setDisable(false);
     setTest((prev) => ({ ...prev, subject: e.target.value }));
+
     console.log(test);
   };
   const changeTheme = (e) => {
-    if (e.target.value === "Выберите тему") {
-      setTest((prev) => ({ ...prev, theme: null }));
-      return;
-    }
-    setTest((prev) => ({ ...prev, theme: e.target.value }));
+    e.target.value === "Выберите тему"
+      ? setTest((prev) => ({ ...prev, theme: null }))
+      : setTest((prev) => ({ ...prev, theme: e.target.value }));
+
     console.log(test);
   };
   return (
     <section className={style.section_tests}>
       <h2>Поиск теста</h2>
-      <div className={style.find_test}>
+      {/* <div className={style.find_test}>
         <div className={style.tests_select}>
           <select name="subject" onChange={(e) => changeSubject(e)}>
             <option value="Выберите предмет">Выберите предмет</option>
@@ -76,7 +88,7 @@ export const Tests = () => {
             </option>
           </select>
         </div>
-      </div>
+      </div> */}
       {tests.map((data) =>
         test.subject === data.tests_subject ? (
           <div key={data.tests_id} className={style.block_test}>

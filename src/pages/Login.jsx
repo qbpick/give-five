@@ -1,25 +1,36 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/auth";
+
 import style from "./Pages.module.css";
 
 export const Login = () => {
+  const { isAuth, setAuth } = useAuth();
   const navigate = useNavigate();
-  const [data, setData] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/profile", { replace: true });
+      console.log(213213123213);
+    }
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
-    const reqData = JSON.stringify(data);
+    console.log(form);
     try {
-      const res = await axios.post("https://high-five.site/api/login", {
-        reqData,
+      const res = await axios.post("https://high-five.site/api/login", form, {
+        withCredentials: true,
       });
-      console.log(res);
-      window.localStorage.setItem("user", JSON.stringify(res));
-      navigate("/profile");
+      console.log(res.data.data);
+      // window.localStorage.setItem("user", JSON.stringify(res.data));
+      setAuth(res.data.data.token);
+      navigate("/profile", { replace: true });
     } catch (err) {
-      console.log(err.error);
+      console.log(err);
       setError(true);
     }
   };
@@ -35,18 +46,19 @@ export const Login = () => {
           placeholder="Введите E-mail"
           name="email"
           required
-          value={data.email}
-          onChange={(e) => setData({ ...data, email: e.target.value })}
+          value={form.email}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
         />
         <label htmlFor="password">Пароль</label>
         <input
           className={style.input_text_auth}
           type="password"
+          autoComplete="on"
           placeholder="Введите пароль"
           name="password"
           required
-          value={data.password}
-          onChange={(e) => setData({ ...data, password: e.target.value })}
+          value={form.password}
+          onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
         {error && (
           <span style={{ color: "red" }}>Не верно введены данные.</span>

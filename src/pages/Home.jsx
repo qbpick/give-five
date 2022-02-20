@@ -8,16 +8,20 @@ import image_card_6 from "../assets/images/opportunity-6.png";
 import { useEffect } from "react";
 import axios from "axios";
 
+
+
 export const Home = () => {
   useEffect(() => {
-    (async () => {
-      try {
-        const res = await axios.get("https://high-five.site/api/info");
-        console.log(res);
-      } catch (e) {
-        console.log(e);
-      }
-    })();
+    // (async () => {
+    //   try {
+    //     const res = await axios.get("https://high-five.site/api/info", {
+    //       withCredentials: true,
+    //     });
+    //     console.log(res);
+    //   } catch (e) {
+    //     console.log(e);
+    //   }
+    // })();
   }, []);
 
   return (

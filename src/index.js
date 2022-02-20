@@ -9,18 +9,18 @@ import Echo from "laravel-echo";
 
 window.Pusher = require("pusher-js");
 
-window.Echo = new Echo({
-  broadcaster: "pusher",
-  key: "local",
-  wsHost: "high-five.site",
-  cluster: "mt1",
-  wsPort: 6001,
+// window.Echo = new Echo({
+//   broadcaster: "pusher",
+//   key: "local",
+//   wsHost: "high-five.site",
+//   cluster: "mt1",
+//   wsPort: 6001,
 
-  forceTLS: false,
-  // wssPort: 6001,
-  // useTLS: false,
-  // disableStats: true,
-});
+//   forceTLS: false,
+//   // wssPort: 6001,
+//   // useTLS: false,
+//   // disableStats: true,
+// });
 
 ReactDOM.render(
   <React.StrictMode>

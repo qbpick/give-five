@@ -1,5 +1,48 @@
 import style from "./ProfileAdmin.module.css";
 
+const roles = {
+  teacher: "work-with-experts",
+  user: "standard-user",
+  admin: "administration",
+  expert: "work-with-users",
+};
+
+const govnoLARAVEL = [
+  {
+    first_name: "John",
+    last_name: "Fam",
+    middle_name: "Fsa",
+    email: "john@gay.com",
+    role: "admin",
+  },
+  {
+    first_name: "John",
+    last_name: "Fam",
+    middle_name: "Fsa",
+    email: "john@gay.com",
+    role: "admin",
+  },
+  {
+    first_name: "John",
+    last_name: "Fam",
+    middle_name: "Fsa",
+    email: "john@gay.com",
+    role: "admin",
+  },
+  {
+    first_name: "John",
+    last_name: "Fam",
+    middle_name: "Fsa",
+    email: "john@gay.com",
+    role: "admin",
+  },
+];
+const godlikeREACT = {
+  email: "john@gay.com",
+  role: "teacher",
+  permission: "teacher",
+};
+
 export const ProfileAdmin = () => {
   return (
     <section className={style.giveaccess_section}>
@@ -9,7 +52,7 @@ export const ProfileAdmin = () => {
           <span>Введите e-mail</span>
           <input type="email" placeholder="Введите email" />
         </div>
-        <button>Дать доступ к тесту пользователю</button>
+        <button>Найти пользователя</button>
       </div>
       <div className={style.tests_list_to_access}>
         <div className={style.block_test}>
