@@ -12,7 +12,7 @@ export const InfoExpert = () => {
       </div>
       <input type="email" name="email" value="maksimkuranov@" />
       <input type="password" name="email" placeholder="Изменить пароль" />
-      <div>
+      <div className={style.textarea_in_expert}>
         <span>Описание: &nbsp;</span>
         <textarea placeholder="Опишите себя" />
       </div>

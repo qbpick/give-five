@@ -266,9 +266,9 @@ select > option {
   }
   .find_test {
     height: 30vh;
-    width: 60vh;
+    width: 50vh;
   }
   .section_tests {
-    margin-left: 20%;
+    width: 50vh;
   }
 }

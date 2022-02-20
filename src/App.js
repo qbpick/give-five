@@ -29,9 +29,9 @@ const App = () => {
           <Route path="feedback" element={<Feedback />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
-          {window.localStorage.getItem("token") &&
+          {/* {window.localStorage.getItem("token") &&
           JSON.parse(window.localStorage.getItem("token"))?.token ? (
-            <>
+            <> */}
               <Route path="messenger" element={<Messenger />} />
               <Route path="messanger" element={<Messanger />} />
               <Route path="profile" element={<Profile />}>
@@ -56,10 +56,10 @@ const App = () => {
                 <Route path="tests" element={<Tests />} />
                 <Route path="tests/:id" element={<Test />} />
               </Route>
-            </>
+            {/* </>
           ) : (
             ""
-          )}
+          )} */}
           <Route path="*" element={<Home />} />
         </Route>
       </Routes>

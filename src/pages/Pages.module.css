@@ -463,10 +463,27 @@
     margin-left: 10%;
   }
   /* адаптив мессенджера */
-
+  .messanger_box {
+    width: 55vh;
+  }
+  .box_messanger {
+    width: 55vh;
+  }
+  .send_message > button {
+    width: 15vh;
+    font-size: 1em;
+    height: 7vh;
+  }
+  .send_message > textarea {
+    width: 40vh;
+    height: 7vh;
+  }
   /* адаптив теста */
   .test_quetion {
-    width: 80%;
+    width: 50vh;
+  }
+  .section_test {
+    margin-left: 15%;
   }
   .end_test_button {
     align-self: center;

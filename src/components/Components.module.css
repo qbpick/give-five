@@ -37,7 +37,8 @@ footer {
   background-color: #83d7ac;
   height: 20vh;
 }
-footer > img, footer > a > img {
+footer > img,
+footer > a > img {
   width: 60px;
   height: 50px;
 }
@@ -181,7 +182,13 @@ li > ul {
   justify-content: space-evenly;
   margin: 20px;
 }
-.answer_input > input[type="text"] {
+.answer_input > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 240px;
+}
+.answer_input > div > input[type="text"] {
   height: 30px;
   font-size: 18px;
   padding: 5px;
@@ -189,6 +196,10 @@ li > ul {
   border: solid 1px #5d5d5d;
   outline: none;
   border-radius: 5px;
+}
+.answer_input > div > input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
 }
 .task_section > button {
   width: 20vh;
@@ -211,7 +222,7 @@ li > ul {
   align-items: center;
 }
 .title_task > span {
-  font-size: 1.1em
+  font-size: 1.1em;
 }
 .title_task > input {
   height: 30px;
@@ -258,5 +269,28 @@ li > ul {
   }
   .navmenu_link {
     display: none;
+  }
+  .title_task {
+    flex-direction: column;
+  }
+  .answer_input {
+    flex-direction: column;
+  }
+  .answer_input > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 180px;
+  }
+  .answer_input > div > input[type="text"] {
+    width: 150px;
+  }
+  .answer_input > div > input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+  .task_section > button {
+    line-height: normal;
+    height: 10vh;
   }
 }
