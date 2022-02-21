@@ -4,8 +4,10 @@ import style from "./Profile.module.css";
 
 export const FindExpert = () => {
   const [disable, setDisable] = useState(true);
-  const changeDisable = () => {
-    setDisable(false);
+  const changeDisable = (e) => {
+    e.target.value !== "Выберите предмет"
+      ? setDisable(false)
+      : setDisable(true);
   };
   return (
     <section className={style.find_expert__section}>
@@ -42,7 +44,9 @@ export const FindExpert = () => {
         <p>Предмет: {"Английский"}</p>
         <p>Тема: {"Грамматика"}</p>
         <button>
-          <Link to="/messanger" className={style.link_button}> {/*мб можно сделать сразу ссылку к диалогу через id */}
+          <Link to="/messanger" className={style.link_button}>
+            {" "}
+            {/*мб можно сделать сразу ссылку к диалогу через id */}
             Написать эксперту
           </Link>
         </button>

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { createSearchParams, NavLink, useSearchParams } from "react-router-dom";
 import style from "./Pages.module.css";
@@ -7,6 +8,18 @@ export const Messanger = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [wsData, setWsData] = useState([]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.get("https://high-five.site/api/get_dialog", {
+          withCredentials: true,
+        });
+        console.log(res);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }, []);
   useEffect(() => {
     const cb = (e) => {
       if (e.key === "Escape") {

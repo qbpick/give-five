@@ -6,20 +6,41 @@ import icon_danger from "../../assets/images/attentn.png";
 
 export const InfoUser = () => {
   const [userData, setUserData] = useState({});
- 
 
   useEffect(() => {
-    (async () => {
-      try {
-        const res = await axios.get("https://high-five.site/api/user/info");
-        console.log(res);
-        setUserData(res);
-        // window.localStorage.setItem("user", res.data.personal_data.user_id);
-      } catch (err) {
-        console.log(err.error);
-      }
-    })();
-  }, [userData, setUserData]);
+    window.localStorage.getItem("token") &&
+    JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
+      ? (async () => {
+          try {
+            const res = await axios.get(
+              "https://high-five.site/api/admin/info",
+              {
+                withCredentials: true,
+              }
+            );
+            console.log(res);
+            setUserData(res.data.data.user);
+            window.localStorage.setItem("user", JSON.stringify(res.data.data));
+          } catch (err) {
+            console.log(err.error);
+          }
+        })()
+      : (async () => {
+          try {
+            const res = await axios.get(
+              "https://high-five.site/api/user/info",
+              {
+                withCredentials: true,
+              }
+            );
+            console.log(res);
+            setUserData(res.data.data.user);
+            window.localStorage.setItem("user", JSON.stringify(res.data.data));
+          } catch (err) {
+            console.log(err.error);
+          }
+        })();
+  }, []);
 
   return (
     <section>
@@ -31,22 +52,31 @@ export const InfoUser = () => {
             type="text"
             name="first_name"
             placeholder="Имя"
+            readOnly
           />
           <input
             defaultValue={userData.last_name}
             type="text"
             name="last_name"
             placeholder="Фамилия"
+            readOnly
           />
           <input
             defaultValue={userData.middle_name}
             type="text"
             name="middle_name"
             placeholder="Отчество"
+            readOnly
           />
         </div>
-        <input type="email" name="email" placeholder="example@mail.com" />
-        <input type="password" name="email" placeholder="Изменить пароль" />
+        <input
+          defaultValue={userData.email}
+          type="email"
+          name="email"
+          placeholder="example@mail.com"
+          readOnly
+        />
+        {/* <input type="password" name="email" placeholder="Изменить пароль" /> */}
         <button className={style.profile_user_button}>
           Сохранить изменения
         </button>
