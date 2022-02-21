@@ -8,18 +8,38 @@ export const InfoUser = () => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    (async () => {
-      try {
-        const res = await axios.get("https://high-five.site/api/user/info", {
-          withCredentials: true,  
-        });
-        console.log(res);
-        setUserData(res.data.data.user);
-        window.localStorage.setItem("user", JSON.stringify(res.data.data));
-      } catch (err) {
-        console.log(err.error);
-      }
-    })();
+    window.localStorage.getItem("token") &&
+    JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
+      ? (async () => {
+          try {
+            const res = await axios.get(
+              "https://high-five.site/api/admin/info",
+              {
+                withCredentials: true,
+              }
+            );
+            console.log(res);
+            setUserData(res.data.data.user);
+            window.localStorage.setItem("user", JSON.stringify(res.data.data));
+          } catch (err) {
+            console.log(err.error);
+          }
+        })()
+      : (async () => {
+          try {
+            const res = await axios.get(
+              "https://high-five.site/api/user/info",
+              {
+                withCredentials: true,
+              }
+            );
+            console.log(res);
+            setUserData(res.data.data.user);
+            window.localStorage.setItem("user", JSON.stringify(res.data.data));
+          } catch (err) {
+            console.log(err.error);
+          }
+        })();
   }, []);
 
   return (

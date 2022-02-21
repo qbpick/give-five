@@ -5,10 +5,10 @@ export const Navmenu = () => {
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
-      // const res = await axios.post("https://high-five.site/api/logout", {
-      //   withCredentials: true,
-      // });
-      // console.log(res);
+      const res = await axios.post("https://high-five.site/api/logout", {
+        withCredentials: true,
+      });
+      console.log(res);
       window.localStorage.clear();
       navigate("/login");
     } catch (err) {

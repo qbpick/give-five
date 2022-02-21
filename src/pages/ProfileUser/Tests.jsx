@@ -57,7 +57,7 @@ export const Tests = () => {
   return (
     <section className={style.section_tests}>
       <h2>Поиск теста</h2>
-      {/* <div className={style.find_test}>
+      <div className={style.find_test}>
         <div className={style.tests_select}>
           <select name="subject" onChange={(e) => changeSubject(e)}>
             <option value="Выберите предмет">Выберите предмет</option>
@@ -88,7 +88,7 @@ export const Tests = () => {
             </option>
           </select>
         </div>
-      </div> */}
+      </div>
       {tests.map((data) =>
         test.subject === data.tests_subject ? (
           <div key={data.tests_id} className={style.block_test}>
