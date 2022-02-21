@@ -22,8 +22,8 @@ import { useAuth } from "./hooks/auth";
 const App = () => {
   const navigate = useNavigate();
   const { isAuth, setAuth } = useAuth();
-  // if (!isAuth) {
-  //   navigate("/login", { replace: true });
+  // if (isAuth) {
+  //   navigate("/profile", { replace: true });
   // }
   return (
     <>
@@ -38,8 +38,8 @@ const App = () => {
             <> */}
           <Route path="messenger" element={<Messenger />} />
           <Route path="messanger" element={<Messanger />} />
-          {window.localStorage.getItem("user") &&
-          JSON.parse(window.localStorage.getItem("user"))?.data.role ===
+          {window.localStorage.getItem("token") &&
+          JSON.parse(window.localStorage.getItem("token"))?.role ===
             "teacher" ? (
             <>
               <Route path="infoteacher" element={<InfoTeacher />} />
@@ -53,8 +53,8 @@ const App = () => {
             ""
           )}
           <Route path="profile" element={<Profile />}>
-            {window.localStorage.getItem("user") &&
-            JSON.parse(window.localStorage.getItem("user"))?.data.role ===
+            {window.localStorage.getItem("token") &&
+            JSON.parse(window.localStorage.getItem("token"))?.role ===
               "admin" ? (
               <>
                 <Route path="give_permission_user" element={<ProfileAdmin />} />
@@ -63,8 +63,8 @@ const App = () => {
             ) : (
               ""
             )}
-            {window.localStorage.getItem("user") &&
-            JSON.parse(window.localStorage.getItem("user"))?.data.role ===
+            {window.localStorage.getItem("token") &&
+            JSON.parse(window.localStorage.getItem("token"))?.role ===
               "expert" ? (
               <>
                 <Route path="infoexpert" element={<InfoExpert />} />

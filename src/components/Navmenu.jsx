@@ -24,8 +24,8 @@ export const Navmenu = () => {
       <Link to="tests" className={style.navmenu_link}>
         Тесты
       </Link>
-      {window.localStorage.getItem("user") &&
-      JSON.parse(window.localStorage.getItem("user"))?.data.role ===
+      {window.localStorage.getItem("token") &&
+      JSON.parse(window.localStorage.getItem("token"))?.role ===
         "expert" ? (
         <Link to="find_expert" className={style.navmenu_link}>
           Найти эксперта
@@ -39,8 +39,8 @@ export const Navmenu = () => {
       {/* У эксперта видать те же самые линки, кроме найти эксперта */}
 
       {/* Дальше линки учителя идут */}
-      {window.localStorage.getItem("user") &&
-      JSON.parse(window.localStorage.getItem("user"))?.data.role ===
+      {window.localStorage.getItem("token") &&
+      JSON.parse(window.localStorage.getItem("token"))?.role ===
         "teacher" ? (
         <Link to="create_test" className={style.navmenu_link}>
           Создать тест
@@ -48,8 +48,8 @@ export const Navmenu = () => {
       ) : (
         ""
       )}
-      {window.localStorage.getItem("user") &&
-      JSON.parse(window.localStorage.getItem("user"))?.data.role === "admin" ? (
+      {window.localStorage.getItem("token") &&
+      JSON.parse(window.localStorage.getItem("token"))?.role === "admin" ? (
         <>
           <Link to="give_permission_user" className={style.navmenu_link}>
             Дать Права
