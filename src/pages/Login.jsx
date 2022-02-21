@@ -11,29 +11,26 @@ export const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState(false);
 
-  useEffect(() => {
-    if (isAuth) {
-      navigate("/profile", { replace: true });
-      console.log(213213123213);
-    }
-  }, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
     try {
       const res = await axios.post("https://high-five.site/api/login", form, {
         withCredentials: true,
       });
       console.log(res.data.data);
-      // window.localStorage.setItem("user", JSON.stringify(res.data));
-      setAuth(res.data.data.token);
+      setAuth(res);
       navigate("/profile", { replace: true });
     } catch (err) {
       console.log(err);
       setError(true);
     }
   };
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/profile", { replace: true });
+      console.log(213213123213);
+    }
+  }, []);
 
   return (
     <form onSubmit={(data) => handleSubmit(data)}>
