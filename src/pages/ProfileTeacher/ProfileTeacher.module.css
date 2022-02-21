@@ -201,7 +201,7 @@
 .block_test {
   width: 75vh;
   font-size: 1.2em;
-  height: 10vh;
+  min-height: 10vh;
   background-color: #f5f5f5;
   border-radius: 20px;
   display: flex;
@@ -240,4 +240,76 @@
   color: white;
   line-height: normal;
   font-style: normal;
+}
+@media screen and (max-width: 425px) {
+  .giveaccess_section {
+    width: 50vh;
+  }
+  .find_to_user > button {
+    width: 40vh;
+    height: 10vh;
+    line-height: normal;
+  }
+  .find_to_user > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .find_to_user > div > input {
+    width: 40vh;
+  }
+  .block_test {
+    flex-direction: column;
+    width: 40vh;
+    min-height: 15vh;
+    padding: 15px;
+  }
+  .block_test > button {
+      min-height: 10vh;
+      line-height: normal;
+      width: 30vh;
+  }
+  .profile_teacher_content {
+    width: 50vh;
+    padding: 0px;
+    height: 100vh;
+    justify-content: space-around;
+  }
+  .info_pictures_and_fio > input {
+    width: 200px;
+  }
+  .info_pictures_and_fio {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 150px;
+  }
+  .profile_teacher_content > input {
+    width: 200px;
+    align-self: center;
+  }
+  .profile_user_button{
+    width: 200px;
+  }
+  .profile_user_confirm__email {
+    height: 20vh;
+    background: none;
+    flex-direction: column;
+    text-align: center;
+  }
+  .profile_user_confirm__email > button {
+    width: 200px;
+  }
+  .createtest_section {
+    width: 50vh;
+    text-align: center;
+  }
+  .section_input_title {
+    flex-direction: column;
+  }
+  .section_input_title > input {
+    width: 40vh;
+  }
+  .createtest_section > button {
+    height: 10vh;
+  }
 }

@@ -111,3 +111,42 @@ span {
   transition: 0.2s;
   background: rgb(223, 198, 76);
 }
+@media screen and (max-width: 425px) {
+  .section_info {
+    width: 50vh;
+    padding: 0px;
+    height: 100vh;
+    justify-content: space-around;
+  }
+  .info_pictures_and_fio > input {
+    width: 200px;
+  }
+  .info_pictures_and_fio {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 150px;
+  }
+  .section_info > input {
+    width: 200px;
+    align-self: center;
+  }
+  .profile_expert_button {
+    width: 200px;
+  }
+  .profile_user_confirm__email {
+    height: 20vh;
+    background: none;
+    flex-direction: column;
+    text-align: center;
+  }
+  .profile_user_confirm__email > button {
+    width: 200px;
+  }
+  .textarea_in_expert {
+    flex-direction: column;
+  }
+  .textarea_in_expert > textarea {
+    width: 200px;
+    padding: 0;
+  }
+}

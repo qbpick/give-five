@@ -5,8 +5,10 @@ export const Task = () => {
   const answ = (
     <div className={style.answer_input}>
       <span>Ответ:</span>
+      <div>
       <input type="text" placeholder="Введите ответ" />
       <input type="checkbox" id="" />
+      </div>
     </div>
   );
   const [answer, setAnswer] = useState([answ]);

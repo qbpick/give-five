@@ -10,7 +10,7 @@ export const Footer = () => {
   return (
     <footer>
       <p>test@high-five.site</p>
-      <a target="_blank" href="https://www.instagram.com/dai5_school/">
+      <a target="_blank" href="https://www.instagram.com/dai5_school/ ">
         <img src={soc_icon_1} alt="inst" />
       </a>
       <a target="_blank" href="https://vk.com/highfive30">
