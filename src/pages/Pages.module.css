@@ -414,7 +414,18 @@
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
-
+.section_result {
+  display: flex;
+  flex-direction: column;
+  width: 60vh;
+  align-items: center;
+  justify-content: space-around;
+}
+.section_result > p {
+  align-self: center;
+  font-size: 1.2em;
+  font-style: normal;
+}
 @media screen and (max-width: 425px) {
   /* адаптив главной страницы*/
   .homepage_section {

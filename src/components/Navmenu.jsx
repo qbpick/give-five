@@ -25,8 +25,7 @@ export const Navmenu = () => {
         Тесты
       </Link>
       {window.localStorage.getItem("token") &&
-      JSON.parse(window.localStorage.getItem("token"))?.role ===
-        "expert" ? (
+      JSON.parse(window.localStorage.getItem("token"))?.role === "expert" ? (
         <Link to="find_expert" className={style.navmenu_link}>
           Найти эксперта
         </Link>
@@ -40,11 +39,15 @@ export const Navmenu = () => {
 
       {/* Дальше линки учителя идут */}
       {window.localStorage.getItem("token") &&
-      JSON.parse(window.localStorage.getItem("token"))?.role ===
-        "teacher" ? (
-        <Link to="create_test" className={style.navmenu_link}>
-          Создать тест
-        </Link>
+      JSON.parse(window.localStorage.getItem("token"))?.role === "teacher" ? (
+        <>
+          <Link to="create_test" className={style.navmenu_link}>
+            Создать тест
+          </Link>
+          <Link to="create_subject" className={style.navmenu_link}>
+            Добавить предмет
+          </Link>
+        </>
       ) : (
         ""
       )}
@@ -59,6 +62,9 @@ export const Navmenu = () => {
           </Link>
           <Link to="create_test" className={style.navmenu_link}>
             Создать тест
+          </Link>
+          <Link to="create_subject" className={style.navmenu_link}>
+            Добавить предмет
           </Link>
         </>
       ) : (

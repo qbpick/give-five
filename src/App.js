@@ -17,8 +17,9 @@ import { InfoTeacher } from "./pages/ProfileTeacher/InfoTeacher";
 import { CreateTest } from "./pages/ProfileTeacher/CreateTest";
 import { GiveAccessTest } from "./pages/ProfileTeacher/GiveAccessTest";
 import { ProfileAdmin } from "./pages/ProfileAdmin/ProfileAdmin";
+import { CreateSubject } from "./pages/ProfileTeacher/CreateSubject";
+import { ResultTest } from "./pages/ResultTest";
 import { ProtectedRoute } from "./components/ProtectedRoute";
-
 const App = () => {
   return (
     <>
@@ -32,31 +33,31 @@ const App = () => {
           {/* {window.localStorage.getItem("token") &&
           JSON.parse(window.localStorage.getItem("token"))?.token ? (
             <> */}
-              <Route path="messenger" element={<Messenger />} />
-              <Route path="messanger" element={<Messanger />} />
-              <Route path="profile" element={<Profile />}>
-                <Route path="infoexpert" element={<InfoExpert />} />{" "}
-                {/* Профиль эксперта */}
-                <Route path="infoteacher" element={<InfoTeacher />} />{" "}
-                {/* Профиль Учителя */}
-                <Route path="create_test" element={<CreateTest />} />{" "}
-                {/* Создание теста  учитель*/}
-                <Route
-                  path="give_access_test"
-                  element={<GiveAccessTest />}
-                />{" "}
-                {/* Дать доступ к тесту учитель*/}
-                <Route
-                  path="give_permission_user"
-                  element={<ProfileAdmin />}
-                />{" "}
-                {/* Дать роль пользователю  админ*/}
-                <Route path="find_expert" element={<FindExpert />} />
-                <Route path="infouser" element={<InfoUser />} />
-                <Route path="tests" element={<Tests />} />
-                <Route path="tests/:id" element={<Test />} />
-              </Route>
-            {/* </>
+          <Route path="messenger" element={<Messenger />} />
+          <Route path="messanger" element={<Messanger />} />
+          <Route path="profile" element={<Profile />}>
+            <Route path="infoexpert" element={<InfoExpert />} />{" "}
+            {/* Профиль эксперта */}
+            <Route path="infoteacher" element={<InfoTeacher />} />{" "}
+            {/* Профиль Учителя */}
+            <Route path="create_test" element={<CreateTest />} />{" "}
+            {/* Создание теста  учитель*/}
+            <Route path="create_subject" element={<CreateSubject />} />
+            {/* Создание предмета  учитель*/}
+            <Route path="give_access_test" element={<GiveAccessTest />} />{" "}
+            {/* Дать доступ к тесту учитель*/}
+            <Route
+              path="give_permission_user"
+              element={<ProfileAdmin />}
+            />{" "}
+            {/* Дать роль пользователю  админ*/}
+            <Route path="find_expert" element={<FindExpert />} />
+            <Route path="infouser" element={<InfoUser />} />
+            <Route path="tests" element={<Tests />} />
+            <Route path="tests/:id" element={<Test />} />
+            <Route path="tests/:id/result" element={<ResultTest />} />
+          </Route>
+          {/* </>
           ) : (
             ""
           )} */}
