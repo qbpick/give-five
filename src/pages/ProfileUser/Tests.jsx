@@ -22,18 +22,60 @@ export const Tests = () => {
   const [disable, setDisable] = useState(true);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const res = await axios.get(
-          "https://high-five.site/api/user/find_tests",
-          { withCredentials: true }
-        );
-        console.log(res.data.data);
-        setTest(res.data.data.items);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
+    window.localStorage.getItem("token") &&
+    JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
+      ? (async () => {
+          try {
+            const res = await axios.get(
+              "https://high-five.site/api/admin/all_tests",
+              { withCredentials: true }
+            );
+            console.log(res.data.data);
+            setTest(res.data.data.items);
+          } catch (error) {
+            console.log(error);
+          }
+        })()
+      : window.localStorage.getItem("token") &&
+        JSON.parse(window.localStorage.getItem("token"))?.role === "user"
+      ? (async () => {
+          try {
+            const res = await axios.get(
+              "https://high-five.site/api/user/find_tests",
+              { withCredentials: true }
+            );
+            console.log(res.data.data);
+            setTest(res.data.data.items);
+          } catch (error) {
+            console.log(error);
+          }
+        })()
+      : window.localStorage.getItem("token") &&
+        JSON.parse(window.localStorage.getItem("token"))?.role === "expert"
+      ? (async () => {
+          try {
+            const res = await axios.get(
+              "https://high-five.site/api/expert/find_tests",
+              { withCredentials: true }
+            );
+            console.log(res.data.data);
+            setTest(res.data.data.items);
+          } catch (error) {
+            console.log(error);
+          }
+        })()
+      : (async () => {
+          try {
+            const res = await axios.get(
+              "https://high-five.site/api/teacher/all_tests",
+              { withCredentials: true }
+            );
+            console.log(res.data.data);
+            setTest(res.data.data.items);
+          } catch (error) {
+            console.log(error);
+          }
+        })();
   }, []);
 
   const changeSubject = async (e) => {
