@@ -19,6 +19,9 @@ import { GiveAccessTest } from "./pages/ProfileTeacher/GiveAccessTest";
 import { ProfileAdmin } from "./pages/ProfileAdmin/ProfileAdmin";
 import { useAuth } from "./hooks/auth";
 
+import { CreateSubject } from "./pages/ProfileTeacher/CreateSubject";
+import { ResultTest } from "./pages/ResultTest";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 const App = () => {
   const navigate = useNavigate();
   const { isAuth, setAuth } = useAuth();
@@ -78,6 +81,7 @@ const App = () => {
             <Route path="infouser" element={<InfoUser />} />
             <Route path="tests" element={<Tests />} />
             <Route path="tests/:id" element={<Test />} />
+            <Route path="tests/:id/result" element={<ResultTest />} />
           </Route>
           {/* </>
           ) : (
@@ -91,3 +95,21 @@ const App = () => {
 };
 /* ПРОСТИ АНДРЕЙ, Я НАСРАЛ ТУТ НЕМНОГА(ЧУ-ЧУТЬ) В РОУТЕР) СИЛЬНО НЕ БЕЙ ПЖПЖПЖПЖ, Я ТЕ БЕРН КУПЛЮ */
 export default App;
+
+//  {/* <Route path="profile" element={<Profile />}>
+//             <Route path="infoexpert" element={<InfoExpert />} />{" "}
+//             {/* Профиль эксперта */}
+//             <Route path="infoteacher" element={<InfoTeacher />} />{" "}
+//             {/* Профиль Учителя */}
+//             <Route path="create_test" element={<CreateTest />} />{" "}
+//             {/* Создание теста  учитель*/}
+//             <Route path="create_subject" element={<CreateSubject />} />
+//             {/* Создание предмета  учитель*/}
+//             <Route path="give_access_test" element={<GiveAccessTest />} />{" "}
+//             {/* Дать доступ к тесту учитель*/}
+//             <Route
+//               path="give_permission_user"
+//               element={<ProfileAdmin />}
+//             />{" "}
+//             Дать роль пользователю  админ
+//           */}
