@@ -4,17 +4,31 @@ import axios from "axios";
 
 export const CreateSubject = () => {
   const [subject, setSubject] = useState("");
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
   const createSubj = () => {
     const data = { subject: subject };
     try {
-        const res = axios.post("https://high-five.site/api/{4to-to}", data, {
-            withCredentials: true,
-    })
-    console.log(res);
+      const res =
+        window.localStorage.getItem("token") &&
+        JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
+          ? axios.post(
+              `https://high-five.site/api/admin/create_subject`,
+              data,
+              {
+                withCredentials: true,
+              }
+            )
+          : axios.post(
+              `https://high-five.site/api/teacher/create_subject`,
+              data,
+              {
+                withCredentials: true,
+              }
+            );
+      console.log(res);
     } catch (error) {
-        console.log(error);
-        setError(error.error.message)
+      console.log(error);
+      setError(error.error.message);
     }
   };
   return (

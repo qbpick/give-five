@@ -3,35 +3,36 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./Profile.module.css";
 
-const tests = [
-  {
-    tests_id: 0,
-    tests_subject: "Английский язык",
-    tests_theme: "Грамматика",
-    tests_questions: 25,
-  },
-  {
-    tests_id: 1,
-    tests_subject: "Английский язык",
-    tests_theme: "Причастие",
-    tests_questions: 20,
-  },
-];
+// const tests = [
+//   {
+//     tests_id: 0,
+//     tests_subject: "Английский язык",
+//     tests_theme: "Грамматика",
+//     tests_questions: 25,
+//   },
+//   {
+//     tests_id: 1,
+//     tests_subject: "Английский язык",
+//     tests_theme: "Причастие",
+//     tests_questions: 20,
+//   },
+// ];
 export const Tests = () => {
   const [test, setTest] = useState({});
   const [disable, setDisable] = useState(true);
 
+  const [tests, setTests] = useState([]);
   useEffect(() => {
     window.localStorage.getItem("token") &&
     JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
       ? (async () => {
           try {
             const res = await axios.get(
-              "https://high-five.site/api/admin/all_tests",
+              `https://high-five.site/api/admin/all_tests`,
               { withCredentials: true }
             );
             console.log(res.data.data);
-            setTest(res.data.data.items);
+            setTests(res.data.data.items);
           } catch (error) {
             console.log(error);
           }
