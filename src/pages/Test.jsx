@@ -57,12 +57,9 @@ export const Test = () => {
         element.question_answers.forEach(item => {
           if(e.target.id == item.id) {
               item.correct = 1
-          } else {
-            item.correct = 0
           }
         })
       })
-      console.log(array);
     }
   };
   const countRight = () => {
@@ -70,9 +67,7 @@ export const Test = () => {
       console.log(array);
       element.question_answers.forEach(item => {
         if(item.correct === 1) {
-          console.log(array);
           count++
-          console.log(count);
         }
       })
     })

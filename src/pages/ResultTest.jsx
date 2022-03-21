@@ -5,6 +5,7 @@ export const ResultTest = () => {
         max: localStorage.getItem("questions"),
         right: localStorage.getItem("result")
     }
+    
     let all_right = data.right / data.max * 100 
     return (
         <section className={style.section_result}>
