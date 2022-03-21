@@ -17,15 +17,11 @@ import style from "./Profile.module.css";
 //     tests_questions: 20,
 //   },
 // ];
-export const Tests = () => {
-  const [test, setTest] = useState({});
-  const [disable, setDisable] = useState(true);
-
-  const [tests, setTests] = useState([]);
-
 export const Tests = ({ TestToWork }) => {
-  const [test, setTest] = useState({});
+  // const [test, setTest] = useState({});
   const [disable, setDisable] = useState(true);
+  const [tests, setTests] = useState([]);
+  const [test, setTest] = useState({});
   const setTestToWork = (e) => {
     tests.forEach((element) => {
       if (e.target.id == element.id) {
