@@ -1,29 +1,41 @@
-import { useState } from "react";
 import style from "./Components.module.css";
+import { Answer } from "./Answer";
+import { useState } from "react";
 
-export const Task = () => {
-  const answ = (
-    <div className={style.answer_input}>
-      <span>Ответ:</span>
-      <input type="text" placeholder="Введите ответ" />
-      <input type="checkbox" id="" />
-    </div>
-  );
-  const [answer, setAnswer] = useState([answ]);
+let quest_id = 0;
+let quest = {
+  question_id: 0,
+  question_name: "",
+  question_answers: [],
+};
+
+export const Task = ({ setTask }) => {
+  const [answers, setAnswers] = useState([]);
   const addAnswer = () => {
-    setAnswer([...answer, answ])
-    console.log(answer);
+    setAnswers([...answers, <Answer setAnswer={setAnswer} />]);
+    console.log(answers);
+    setTask(quest);
+  };
+  const setAnswer = (value) => {
+    console.log(value);
+    quest.question_answers.push(value)
   };
   return (
-    <div className={style.task_section}>
+    <div className={style.task_section} key={quest.question_id}>
       <div className={style.title_task}>
         <span>Вопрос №{1}</span>
-        <input type="text" placeholder="Введите вопрос" />
+        <input
+          type="text"
+          placeholder="Введите вопрос"
+          onChange={(e) => (quest.question_name = e.target.value)}
+        />
+      </div>
+      <div>
+        {answers.map((items) => {
+          return items;
+        })}
       </div>
       <button onClick={addAnswer}>Добавить ответ</button>
-      {answer.map((item) => {
-            return item;
-          })} 
     </div>
   );
 };
