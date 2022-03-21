@@ -20,7 +20,12 @@ import { ProfileAdmin } from "./pages/ProfileAdmin/ProfileAdmin";
 import { CreateSubject } from "./pages/ProfileTeacher/CreateSubject";
 import { ResultTest } from "./pages/ResultTest";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { useState } from "react";
 const App = () => {
+  const [testData, setTestData] = useState({})
+  const testToWork = (value) => {
+    setTestData(value)
+  };
   return (
     <>
       <Routes>
@@ -53,8 +58,8 @@ const App = () => {
             {/* Дать роль пользователю  админ*/}
             <Route path="find_expert" element={<FindExpert />} />
             <Route path="infouser" element={<InfoUser />} />
-            <Route path="tests" element={<Tests />} />
-            <Route path="tests/:id" element={<Test />} />
+            <Route path="tests" element={<Tests TestToWork={testToWork}/>} />
+            <Route path="tests/:id" element={<Test testData={testData} />} />
             <Route path="tests/:id/result" element={<ResultTest />} />
           </Route>
           {/* </>

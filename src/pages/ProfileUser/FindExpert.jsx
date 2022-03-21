@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import style from "./Profile.module.css";
 import axios from "axios";
 
 export const FindExpert = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.get(
+          "https://high-five.site/api/get_all_expert"
+        );
+        setData(res.data.data.personal_data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
   const [disable, setDisable] = useState(true);
   const changeDisable = (e) => {
     e.target.value !== "Выберите предмет"
@@ -39,19 +52,20 @@ export const FindExpert = () => {
           </option>
         </select>
       </div>
-      {/* data.map((item) => ()) */}
-      <div className={style.block_expert}>
-        <p>Имя: {"МаксимОЧКА"}</p>
-        <p>Предмет: {"Английский"}</p>
-        <p>Тема: {"Грамматика"}</p>
-        <button>
-          <Link to="/messanger" className={style.link_button}>
-            {" "}
-            {/*мб можно сделать сразу ссылку к диалогу через id */}
-            Написать эксперту
-          </Link>
-        </button>
-      </div>
+      {data.map((item) => {
+        return (
+          <div className={style.block_expert}>
+            <p>ФИО: {item.first_name} {item.last_name} {item.middle_name}</p>
+            <button>
+              <Link to="/messanger" className={style.link_button}>
+                {" "}
+                {/*мб можно сделать сразу ссылку к диалогу через id */}
+                Написать эксперту
+              </Link>
+            </button>
+          </div>
+        );
+      })}
     </section>
   );
 };
