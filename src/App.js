@@ -41,27 +41,25 @@ const App = () => {
             <> */}
           <Route path="messenger" element={<Messenger />} />
           <Route path="messanger" element={<Messanger />} />
-          {window.localStorage.getItem("token") &&
-          JSON.parse(window.localStorage.getItem("token"))?.role ===
-            "teacher" ? (
-            <>
-              <Route path="infoteacher" element={<InfoTeacher />} />
-              {/* Создание теста  учитель*/}
-              <Route path="create_subject" element={<CreateSubject />} />
-              {/* Создание теста  учитель*/}
-              <Route path="give_access_test" element={<GiveAccessTest />} />
-              {/* Дать доступ к тесту учитель*/}
-            </>
-          ) : (
-            ""
-          )}
           <Route path="profile" element={<Profile />}>
+            {/* {window.localStorage.getItem("token") && */}
+            {/* JSON.parse(window.localStorage.getItem("token"))?.role === */}
+            {/* "teacher" && ( */}
+            {/* <> */}
+            <Route path="infoteacher" element={<InfoTeacher />} />
+            {/* Создание теста  учитель*/}
+            <Route path="create_test" element={<CreateTest />} />
+            {/* Создание теста  учитель*/}
+            <Route path="give_access_test" element={<GiveAccessTest />} />
+            {/* Дать доступ к тесту учитель*/}
+            {/* </> */}
+            {/* )} */}
             {window.localStorage.getItem("token") &&
             JSON.parse(window.localStorage.getItem("token"))?.role ===
               "admin" ? (
               <>
                 {/* Создание теста  учитель*/}
-                <Route path="create_subject" element={<CreateSubject />} />
+                <Route path="create_test" element={<CreateTest />} />
                 <Route path="give_permission_user" element={<ProfileAdmin />} />
                 {/* Дать роль пользователю  админ*/}
               </>
@@ -73,7 +71,7 @@ const App = () => {
               "expert" ? (
               <>
                 {/* Создание теста  учитель*/}
-                <Route path="create_subject" element={<CreateSubject />} />
+                <Route path="create_test" element={<CreateSubject />} />
                 <Route path="infoexpert" element={<InfoExpert />} />
                 {/* Профиль эксперта */}
               </>

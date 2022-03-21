@@ -42,7 +42,7 @@ export const CreateSubject = () => {
           placeholder="Введите название предмета"
         />
       </div>
-      <button onClick={createSubj}>Создать тест</button>
+      <button onClick={createSubj}>Создать предмет</button>
     </section>
   );
 };

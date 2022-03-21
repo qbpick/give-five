@@ -25,8 +25,7 @@ export const Navmenu = () => {
         Тесты
       </Link>
       {window.localStorage.getItem("token") &&
-      JSON.parse(window.localStorage.getItem("token"))?.role ===
-        "expert" ? (
+      JSON.parse(window.localStorage.getItem("token"))?.role === "expert" ? (
         <Link to="find_expert" className={style.navmenu_link}>
           Найти эксперта
         </Link>
