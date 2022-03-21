@@ -22,12 +22,17 @@ import { useAuth } from "./hooks/auth";
 import { CreateSubject } from "./pages/ProfileTeacher/CreateSubject";
 import { ResultTest } from "./pages/ResultTest";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { useState } from "react";
 const App = () => {
   const navigate = useNavigate();
   const { isAuth, setAuth } = useAuth();
   // if (isAuth) {
   //   navigate("/profile", { replace: true });
   // }
+  const [testData, setTestData] = useState({})
+  const testToWork = (value) => {
+    setTestData(value)
+  };
   return (
     <>
       <Routes>
@@ -81,8 +86,8 @@ const App = () => {
 
             <Route path="find_expert" element={<FindExpert />} />
             <Route path="infouser" element={<InfoUser />} />
-            <Route path="tests" element={<Tests />} />
-            <Route path="tests/:id" element={<Test />} />
+            <Route path="tests" element={<Tests TestToWork={testToWork}/>} />
+            <Route path="tests/:id" element={<Test testData={testData} />} />
             <Route path="tests/:id/result" element={<ResultTest />} />
           </Route>
           {/* </>

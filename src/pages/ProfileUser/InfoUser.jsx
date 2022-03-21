@@ -6,7 +6,7 @@ import icon_danger from "../../assets/images/attentn.png";
 
 export const InfoUser = () => {
   const [userData, setUserData] = useState({});
-
+  const [verifiedAt, setverifiedAt] = useState();
   useEffect(() => {
     window.localStorage.getItem("token") &&
     JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
@@ -20,6 +20,7 @@ export const InfoUser = () => {
             );
             console.log(res);
             setUserData(res.data.data.user);
+            setverifiedAt(res.data.data.email_verified_at);
             window.localStorage.setItem("user", JSON.stringify(res.data.data));
           } catch (err) {
             console.log(err.error);
@@ -77,14 +78,15 @@ export const InfoUser = () => {
           readOnly
         />
         {/* <input type="password" name="email" placeholder="Изменить пароль" /> */}
-        <button className={style.profile_user_button}>
-          Сохранить изменения
-        </button>
-        <div className={style.profile_user_confirm__email}>
-          <img src={icon_danger} alt="danger" />
-          <p>Ваша почта не подтверждена. Проверьте почту</p>
-          <button>Отправить письмо</button>
-        </div>
+        {verifiedAt == null ? (
+          <div className={style.profile_user_confirm__email}>
+            <img src={icon_danger} alt="danger" />
+            <p>Ваша почта не подтверждена. Проверьте почту</p>
+            <button>Отправить письмо</button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </section>
   );

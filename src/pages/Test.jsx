@@ -1,78 +1,49 @@
 import { NavLink, useParams } from "react-router-dom";
 import style from "./Pages.module.css";
-const test = [
-  {
-    question_id: 1,
-    question_name: "Кто такой Ленин?",
-    question_answers: [
-      { id: 0, answer: "Негр", correct: false },
-      { id: 1, answer: "Русский", correct: true },
-      { id: 2, answer: "Негритянка", correct: false },
-      { id: 3, answer: "Максим", correct: false },
-    ],
-  },
-  {
-    question_id: 2,
-    question_name: "Кто такой Путин?",
-    question_answers: [
-      { id: 4, answer: "Бог", correct: true },
-      { id: 5, answer: "Русский", correct: false },
-      { id: 6, answer: "Нигер", correct: false },
-      { id: 7, answer: "Максим", correct: false },
-    ],
-  },
-  {
-    question_id: 3,
-    question_name: "Вы знали, что айтипедию разбанили??",
-    question_answers: [
-      { id: 8, answer: "Да", correct: true },
-      { id: 9, answer: "Нет", correct: false },
-    ],
-  },
-  {
-    question_id: 4,
-    question_name: "А вы знаете, кто такой айтипедия?",
-    question_answers: [
-      { id: 10, answer: "Да", correct: true },
-      { id: 11, answer: "Нет", correct: false },
-    ],
-  },
-  {
-    question_id: 5,
-    question_name: "Точно не знаете?",
-    question_answers: [
-      { id: 12, answer: "Да", correct: false },
-      { id: 13, answer: "Нет", correct: true },
-    ],
-  },
-];
-export const Test = () => {
-  localStorage.setItem("questions", test.length)
-  let count = 0
-  let array = JSON.parse(JSON.stringify(test))
+import axios from "axios";
+import { useEffect } from "react";
+export const Test = ({testData}) => {
+  const test = testData
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.get(
+          "https://high-five.site/api/user/find_tests",
+          { withCredentials: true }
+        );
+        console.log(res.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
+  localStorage.setItem("questions", test.length);
+  let count = 0;
+  let array = JSON.parse(JSON.stringify(test));
   const { id } = useParams();
   const testCount = (e) => {
     if (e.target.checked && e.target.value === "true") {
-      array.forEach(element => {
-        element.question_answers.forEach(item => {
-          if(e.target.id == item.id) {
-              item.correct = 1
+      array.forEach((element) => {
+        element.question_answers.forEach((item) => {
+          if (e.target.id == item.id) {
+            item.correct = 1;
           }
-        })
-      })
+        });
+      });
     }
   };
   const countRight = () => {
-    array.forEach(element => {
+    array.forEach((element) => {
       console.log(array);
-      element.question_answers.forEach(item => {
-        if(item.correct === 1) {
-          count++
+      element.question_answers.forEach((item) => {
+        if (item.correct === 1) {
+          count++;
         }
-      })
-    })
-    localStorage.setItem("result", count)
-  }
+      });
+    });
+    localStorage.setItem("result", count);
+  };
   return (
     <section className={style.section_test}>
       <h2>Грамматика</h2>
@@ -100,7 +71,7 @@ export const Test = () => {
           to={`/profile/tests/${id}/result`}
           onClick={countRight}
           className={style.link_button}
-          name={{count}}
+          name={{ count }}
         >
           Закончить тест
         </NavLink>{" "}
