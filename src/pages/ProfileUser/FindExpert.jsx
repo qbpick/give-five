@@ -8,9 +8,17 @@ export const FindExpert = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get(
-          "https://high-five.site/api/get_all_expert"
-        );
+        const res =
+          window.localStorage.getItem("token") &&
+          JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
+            ? await axios.get(
+                "https://high-five.site/api/admin/get_all_expert",
+                { withCredentials: true }
+              )
+            : await axios.get(
+                "https://high-five.site/api/teacher/get_all_expert",
+                { withCredentials: true }
+              );
         setData(res.data.data.personal_data);
       } catch (error) {
         console.log(error);
@@ -52,20 +60,23 @@ export const FindExpert = () => {
           </option>
         </select>
       </div>
-      {data.map((item) => {
-        return (
-          <div className={style.block_expert}>
-            <p>ФИО: {item.first_name} {item.last_name} {item.middle_name}</p>
-            <button>
-              <Link to="/messanger" className={style.link_button}>
-                {" "}
-                {/*мб можно сделать сразу ссылку к диалогу через id */}
-                Написать эксперту
-              </Link>
-            </button>
-          </div>
-        );
-      })}
+      {data &&
+        data.map((item) => {
+          return (
+            <div className={style.block_expert}>
+              <p>
+                ФИО: {item.first_name} {item.last_name} {item.middle_name}
+              </p>
+              <button>
+                <Link to="/messanger" className={style.link_button}>
+                  {" "}
+                  {/*мб можно сделать сразу ссылку к диалогу через id */}
+                  Написать эксперту
+                </Link>
+              </button>
+            </div>
+          );
+        })}
     </section>
   );
 };

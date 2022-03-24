@@ -57,10 +57,10 @@ export const Navmenu = () => {
           <Link to="give_permission_user" className={style.navmenu_link}>
             Дать Права
           </Link>
-          <Link to="find_expert" className={style.navmenu_link}>
+          {/* <Link to="find_expert" className={style.navmenu_link}>
             Найти эксперта
-          </Link>
-          <Link to="create_subject" className={style.navmenu_link}>
+          </Link> */}
+          <Link to="create_test" className={style.navmenu_link}>
             Создать тест
           </Link>
           {/* <Link to="create_test" className={style.navmenu_link}>

@@ -4,22 +4,31 @@ import { createSearchParams, NavLink, useSearchParams } from "react-router-dom";
 import style from "./Pages.module.css";
 
 export const Messanger = () => {
-  const [message, setMessage] = useState("");
-
+  const [message, setMessage] = useState({
+    message: "",
+    to_user: 0,
+  });
   const [searchParams, setSearchParams] = useSearchParams();
-  const [wsData, setWsData] = useState([]);
+  const [chats, setChats] = useState([]);
+  const [chatMessages, setChatMessages] = useState([]);
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get("https://high-five.site/api/get_dialog", {
-          withCredentials: true,
-        });
+        const res = await axios.post(
+          "https://high-five.site/api/getFriends",
+          {},
+          {
+            withCredentials: true,
+          }
+        );
+        setChats(res.data);
         console.log(res);
       } catch (e) {
         console.log(e);
       }
     })();
-  }, []);
+  }, [chats, setChats]);
+
   useEffect(() => {
     const cb = (e) => {
       if (e.key === "Escape") {
@@ -31,64 +40,148 @@ export const Messanger = () => {
       window.removeEventListener("keydown", cb);
     };
   }, [searchParams, setSearchParams]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res =
+          window.localStorage.getItem("token") &&
+          JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
+            ? await axios.post(
+                `https://high-five.site/api/admin/session/chats/${searchParams.get(
+                  "chat"
+                )}`,
+                {},
+                {
+                  withCredentials: true,
+                }
+              )
+            : window.localStorage.getItem("token") &&
+              JSON.parse(window.localStorage.getItem("token"))?.role === "user"
+            ? await axios.post(
+                `https://high-five.site/api/user/session/chats/${searchParams.get(
+                  "chat"
+                )}`,
+                {},
+                {
+                  withCredentials: true,
+                }
+              )
+            : window.localStorage.getItem("token") &&
+              JSON.parse(window.localStorage.getItem("token"))?.role ===
+                "expert"
+            ? await axios.post(
+                `https://high-five.site/api/expert/session/chats/${searchParams.get(
+                  "chat"
+                )}`,
+                {},
+                {
+                  withCredentials: true,
+                }
+              )
+            : await axios.post(
+                `https://high-five.site/api/teacher/session/chats/${searchParams.get(
+                  "chat"
+                )}`,
+                {},
+                {
+                  withCredentials: true,
+                }
+              );
+        setChatMessages(res.data);
+        console.log(res);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }, [searchParams, setSearchParams]);
+
+  const hadnleInput = (e) => {
+    setMessage({ ...message, message: e.target.value });
+  };
+  const handleSubmit = async (e) => {
+    try {
+      const res =
+        window.localStorage.getItem("token") &&
+        JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
+          ? await axios.post(
+              `https://high-five.site/api/admin/send/${message.to_user}`,
+              message,
+              { withCredentials: true }
+            )
+          : window.localStorage.getItem("token") &&
+            JSON.parse(window.localStorage.getItem("token"))?.role === "user"
+          ? await axios.post(
+              `https://high-five.site/api/user/send/${message.to_user}`,
+              message,
+              { withCredentials: true }
+            )
+          : window.localStorage.getItem("token") &&
+            JSON.parse(window.localStorage.getItem("token"))?.role === "expert"
+          ? await axios.post(
+              `https://high-five.site/api/expert/send/${message.to_user}`,
+              message,
+              { withCredentials: true }
+            )
+          : await axios.post(
+              `https://high-five.site/api/teacher/send/${message.to_user}`,
+              message,
+              { withCredentials: true }
+            );
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <section className={style.section_messanger}>
       <div className={style.messanger_box}>
         <div className={style.dialogs_user}>
-          <NavLink
-            // to={`?chat=${el}`}
-            to={`?${createSearchParams({ chat: "Серега" })}`}
-            className={() =>
-              "Серега" === searchParams.get("chat") ? "active" : ""
-            }
-            // style={() => ({
-            //   color: "Серега" === searchParams.get("chat") ? "green" : "red",
-            // })}
-            key={"Серега"}
-          >
-            Серега
-          </NavLink>
-          <NavLink
-            to={`?${createSearchParams({ chat: "Никита" })}`}
-            className={() =>
-              "Никита" === searchParams.get("chat") ? "active" : ""
-            }
-            // style={() => ({
-            //   color: "Серега" === searchParams.get("chat") ? "green" : "red",
-            // })}
-            key={"Никита"}
-          >
-            НИкита
-          </NavLink>
-          <NavLink to="q">БорИс)</NavLink>
-          <NavLink to="q">Серега</NavLink>
-          <NavLink to="q">НИкита</NavLink>
-          <NavLink to="q">БорИс)</NavLink>
-          <NavLink to="q">Серега</NavLink>
-          <NavLink to="q">НИкита</NavLink>
-          <NavLink to="q">БорИс)</NavLink>
-          <NavLink to="q">Серега</NavLink>
-          <NavLink to="q">НИкита</NavLink>
-          <NavLink to="q">БорИс)</NavLink>
+          {chats.length
+            ? chats.map((chat) => (
+                <NavLink
+                  to={`?${createSearchParams({ chat: chat.name })}`}
+                  className={() =>
+                    chat.name === searchParams.get("chat") ? "active" : ""
+                  }
+                  // style={() => ({
+                  //   color: "Серега" === searchParams.get("chat") ? "green" : "red",
+                  // })}
+                  key={chat.id}
+                >
+                  {chat.name}
+                </NavLink>
+              ))
+            : "Пока у вас нет диалогов"}
         </div>
         <div className={style.box_messanger}>
-          <p>Виталий</p>
+          <p>{searchParams.get("chat")}</p>
           <div className={style.dialog_box}>
             <div>
-              {/* <div className={style.message}>
-                <div className={style.title_message}>
-                  <p className={style.name_user__message}>Никита </p>&nbsp;
-                  <p>23:24</p>
-                </div>
-                <p className={style.text_message}>
-                  когда мы в клубе чиксы танцуют ферст
-                </p>
-              </div> */}
+              {chatMessages.length
+                ? chatMessages.map((message) => (
+                    <div className={style.message}>
+                      <div className={style.title_message}>
+                        <p className={style.name_user__message}>
+                          {message.type ? "Я" : "Мне"}
+                        </p>
+                        &nbsp;
+                        <p>{message.send_at}</p>
+                      </div>
+                      <p className={style.text_message}>{message.message}</p>
+                    </div>
+                  ))
+                : "Пока тут нет сообщений"}
             </div>
           </div>
           <div className={style.send_message}>
-            <textarea placeholder="Напишите сообщение" />
-            <button>Отправить</button>
+            <textarea
+              onInput={(e) => hadnleInput(e)}
+              value={message.message}
+              placeholder="Напишите сообщение"
+            />
+            <button onClick={() => handleSubmit()}>Отправить</button>
           </div>
         </div>
       </div>

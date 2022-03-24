@@ -64,11 +64,19 @@ export const CreateTest = () => {
     try {
       const quiz = { ...test, json_data: [...questions] };
       console.log(quiz);
-      const res = await axios.post(
-        "https://high-five.site/api/teacher/create_test",
-        quiz,
-        { withCredentials: true }
-      );
+      const res =
+        window.localStorage.getItem("token") &&
+        JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
+          ? await axios.post(
+              "https://high-five.site/api/admin/create_test",
+              quiz,
+              { withCredentials: true }
+            )
+          : await axios.post(
+              "https://high-five.site/api/teacher/create_test",
+              quiz,
+              { withCredentials: true }
+            );
       console.log(res);
       navigate("/profile/infouser");
     } catch (error) {
