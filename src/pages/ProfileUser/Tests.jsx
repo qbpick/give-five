@@ -22,10 +22,11 @@ export const Tests = ({ TestToWork }) => {
   const [disable, setDisable] = useState(true);
   const [tests, setTests] = useState([]);
   const [test, setTest] = useState({});
+  const [testExp, setTestExp] = useState([]);
   const setTestToWork = (e) => {
     tests.forEach((element) => {
       if (e.target.id == element.id) {
-        TestToWork(element.json_data);
+        TestToWork(element);
       }
     });
   };
@@ -53,7 +54,7 @@ export const Tests = ({ TestToWork }) => {
               { withCredentials: true }
             );
             console.log(res.data.data);
-            setTest(res.data.data.items);
+            setTests(res.data.data.items);
           } catch (error) {
             console.log(error);
           }
@@ -67,7 +68,7 @@ export const Tests = ({ TestToWork }) => {
               { withCredentials: true }
             );
             console.log(res.data.data);
-            setTest(res.data.data.items);
+            setTestExp(res.data.data.items);
           } catch (error) {
             console.log(error);
           }
@@ -80,6 +81,7 @@ export const Tests = ({ TestToWork }) => {
             );
             console.log(res.data.data);
             setTest(res.data.data.items);
+            setTestExp(res.data.data.items);
           } catch (error) {
             console.log(error);
           }
@@ -103,6 +105,13 @@ export const Tests = ({ TestToWork }) => {
       : setTest((prev) => ({ ...prev, theme: e.target.value }));
 
     console.log(test);
+  };
+  const setTestToWorkExp = (e) => {
+    testExp.forEach((element) => {
+      if (e.target.id == element.id) {
+        TestToWork(element);
+      }
+    });
   };
   return (
     <section className={style.section_tests}>
@@ -139,8 +148,37 @@ export const Tests = ({ TestToWork }) => {
           </select>
         </div>
       </div>
-      {tests.map((data) =>
-        test.subject === data.test_subject ? (
+      {testExp.map((data) => (
+        <div key={data.id} className={style.block_test}>
+          <p>Предмет: {data.test_subject}</p>
+          <p>Тема: {data.name_test}</p>
+          <p>Кол-во вопросов: {data.json_data.length}</p>
+          {/* Если нету, прст убери */}
+          <button>
+            <Link
+              id={data.id}
+              onClick={setTestToWork}
+              to={`${data.id}`}
+              className={style.link_button}
+            >
+              Начать
+            </Link>
+          </button>
+          <button>
+            <Link
+              id={data.id}
+              onClick={setTestToWorkExp}
+              to="/profile/give_access_test"
+              className={style.link_button}
+            >
+              Дать доступ
+            </Link>
+          </button>
+        </div>
+      ))}
+      {tests.map(
+        (data) => (
+          // test.subject === data.test_subject ? (
           <div key={data.id} className={style.block_test}>
             <p>Предмет: {data.test_subject}</p>
             <p>Тема: {data.name_test}</p>
@@ -157,9 +195,10 @@ export const Tests = ({ TestToWork }) => {
               </Link>
             </button>
           </div>
-        ) : (
-          ""
         )
+        // ) : (
+        //   ""
+        // )
       )}
     </section>
   );

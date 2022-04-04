@@ -3,7 +3,8 @@ import style from "./Pages.module.css";
 import axios from "axios";
 import { useEffect } from "react";
 export const Test = ({testData}) => {
-  const test = testData
+  const test = testData.json_data;
+  console.log(test);
   useEffect(() => {
     (async () => {
       try {

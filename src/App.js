@@ -55,7 +55,7 @@ const App = () => {
             {/* Создание теста  учитель*/}
             <Route path="create_test" element={<CreateTest />} />
             {/* Создание теста  учитель*/}
-            <Route path="give_access_test" element={<GiveAccessTest />} />
+            <Route path="give_access_test" element={<GiveAccessTest testData={testData} />} />
             {/* Дать доступ к тесту учитель*/}
             {/* </> */}
             {/* )} */}
@@ -88,7 +88,7 @@ const App = () => {
             <Route path="infouser" element={<InfoUser />} />
             <Route path="tests" element={<Tests TestToWork={testToWork}/>} />
             <Route path="tests/:id" element={<Test testData={testData} />} />
-            <Route path="tests/:id/result" element={<ResultTest />} />
+            <Route path="tests/:id/result" element={<ResultTest testData={testData} />} />
           </Route>
           {/* </>
           ) : (

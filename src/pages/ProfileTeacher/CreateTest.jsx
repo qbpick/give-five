@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Task } from "../../components/Task";
 import style from "./ProfileTeacher.module.css";
 import axios from "axios";
@@ -22,6 +22,39 @@ import axios from "axios";
 // ],
 
 export const CreateTest = () => {
+  //расскоментить и подправить эндпоинт когда макс зарефакторит
+  // const [subj, setSubj] = useState([]);
+  // useEffect(() => {
+  //   window.localStorage.getItem("token") &&
+  //   JSON.parse(window.localStorage.getItem("token"))?.role === "expert"
+  //     ? (async () => {
+  //         try {
+  //           const res = await axios.get(
+  //             "https://high-five.site/api/expert/get_all_subject",
+  //             { withCredentials: true }
+  //           );
+  //           setSubj(res.data.data.items);
+  //           console.log(res.data.data.items);
+  //         } catch (error) {
+  //           console.log(error);
+  //         }
+  //       })()
+  //     : window.localStorage.getItem("token") &&
+  //       JSON.parse(window.localStorage.getItem("token"))?.role === "teacher"
+  //     ? (async () => {
+  //         try {
+  //           const res = await axios.get(
+  //             "https://high-five.site/api/teacher/get_all_subject",
+  //             { withCredentials: true }
+  //           );
+  //           setSubj(res.data.data.items);
+  //           console.log(res.data.data.items);
+  //         } catch (error) {
+  //           console.log(error);
+  //         }
+  //       })()
+  //     : console.log("Что-то нечистое)");
+  // }, []);
   const navigate = useNavigate();
   const [test, setTest] = useState({
     name_test: "",
@@ -80,7 +113,7 @@ export const CreateTest = () => {
       console.log(res);
       navigate("/profile/infouser");
     } catch (error) {
-      console.log("хуета");
+      console.log(error);
     }
   };
 
@@ -91,8 +124,8 @@ export const CreateTest = () => {
         <span>Предмет: &nbsp;</span>
         <select name="subject" onChange={(e) => changeSubject(e)}>
           <option value="Выберите предмет">Выберите предмет</option>
-          <option name="english" value="Английский язык">
-            Английский язык
+          <option name="english" value="Английский">
+            Английский
           </option>
           <option name="mathematics" value="Математика">
             Математика
@@ -104,6 +137,16 @@ export const CreateTest = () => {
             Русский язык
           </option>
         </select>
+
+        {/* потом раскоментить, когда макс сделает эндпоинт
+        <select name="subject" onChange={(e) => changeSubject(e)}>
+          {subj.map((subject) => {
+            return (
+              <option value={subject.subject_name}>{subject.subject_name}</option>
+            );
+          })}
+        </select> */}
+        
       </div>
       <div className={style.section_input_title}>
         <span>Тема: &nbsp;</span>
