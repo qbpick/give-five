@@ -14,13 +14,43 @@ export const Messanger = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.post(
-          "https://high-five.site/api/getFriends",
-          {},
-          {
-            withCredentials: true,
-          }
-        );
+        const res =
+          window.localStorage.getItem("token") &&
+          JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
+            ? await axios.post(
+                "https://high-five.site/api/admin/getFriends",
+                {},
+                {
+                  withCredentials: true,
+                }
+              )
+            : window.localStorage.getItem("token") &&
+              JSON.parse(window.localStorage.getItem("token"))?.role ===
+                "teacher"
+            ? await axios.post(
+                "https://high-five.site/api/teacher/getFriends",
+                {},
+                {
+                  withCredentials: true,
+                }
+              )
+            : window.localStorage.getItem("token") &&
+              JSON.parse(window.localStorage.getItem("token"))?.role ===
+                "expert"
+            ? await axios.post(
+                "https://high-five.site/api/expert/getFriends",
+                {},
+                {
+                  withCredentials: true,
+                }
+              )
+            : await axios.post(
+                "https://high-five.site/api/user/getFriends",
+                {},
+                {
+                  withCredentials: true,
+                }
+              );
         setChats(res.data);
         console.log(res);
       } catch (e) {

@@ -75,7 +75,7 @@
   margin: 5px;
 }
 .block_test > button {
-  width: 25vh;
+  min-width: 19vh;
   align-self: center;
   height: 5vh;
   font-size: 1.1em;

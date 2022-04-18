@@ -6,7 +6,7 @@ import axios from "axios";
 // import { task } from "./test";
 
 // name_test: "",
-// test_subject: "",
+// name: "",
 // json_data: [
 //   {
 //     question_id: 0,
@@ -22,43 +22,10 @@ import axios from "axios";
 // ],
 
 export const CreateTest = () => {
-  //расскоментить и подправить эндпоинт когда макс зарефакторит
-  // const [subj, setSubj] = useState([]);
-  // useEffect(() => {
-  //   window.localStorage.getItem("token") &&
-  //   JSON.parse(window.localStorage.getItem("token"))?.role === "expert"
-  //     ? (async () => {
-  //         try {
-  //           const res = await axios.get(
-  //             "https://high-five.site/api/expert/get_all_subject",
-  //             { withCredentials: true }
-  //           );
-  //           setSubj(res.data.data.items);
-  //           console.log(res.data.data.items);
-  //         } catch (error) {
-  //           console.log(error);
-  //         }
-  //       })()
-  //     : window.localStorage.getItem("token") &&
-  //       JSON.parse(window.localStorage.getItem("token"))?.role === "teacher"
-  //     ? (async () => {
-  //         try {
-  //           const res = await axios.get(
-  //             "https://high-five.site/api/teacher/get_all_subject",
-  //             { withCredentials: true }
-  //           );
-  //           setSubj(res.data.data.items);
-  //           console.log(res.data.data.items);
-  //         } catch (error) {
-  //           console.log(error);
-  //         }
-  //       })()
-  //     : console.log("Что-то нечистое)");
-  // }, []);
   const navigate = useNavigate();
   const [test, setTest] = useState({
     name_test: "",
-    test_subject: "",
+    name: "",
     json_data: [],
   });
   const [questions, setQuestions] = useState([]);
@@ -81,7 +48,7 @@ export const CreateTest = () => {
     ]);
   };
   const changeSubject = (e) => {
-    setTest((prev) => ({ ...prev, test_subject: e.target.value }));
+    setTest((prev) => ({ ...prev, name: e.target.value }));
   };
   const changetTheme = (e) => {
     setTest((prev) => ({ ...prev, name_test: e.target.value }));

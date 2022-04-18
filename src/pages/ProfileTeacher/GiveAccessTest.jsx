@@ -4,6 +4,7 @@ import style from "./ProfileTeacher.module.css";
 
 export const GiveAccessTest = ({ testData }) => {
   const testDataItem = testData;
+  console.log(testData);
   const [subj, setSubj] = useState();
   useEffect(() => {
     window.localStorage.getItem("token") &&

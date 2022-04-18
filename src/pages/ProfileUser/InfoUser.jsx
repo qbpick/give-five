@@ -26,6 +26,40 @@ export const InfoUser = () => {
             console.log(err.error);
           }
         })()
+      : window.localStorage.getItem("token") &&
+        JSON.parse(window.localStorage.getItem("token"))?.role === "teacher"
+      ? (async () => {
+          try {
+            const res = await axios.get(
+              "https://high-five.site/api/teacher/info",
+              {
+                withCredentials: true,
+              }
+            );
+            console.log(res);
+            setUserData(res.data.data.user);
+            window.localStorage.setItem("user", JSON.stringify(res.data.data));
+          } catch (err) {
+            console.log(err.error);
+          }
+        })()
+      : window.localStorage.getItem("token") &&
+        JSON.parse(window.localStorage.getItem("token"))?.role === "expert"
+      ? (async () => {
+          try {
+            const res = await axios.get(
+              "https://high-five.site/api/expert/info",
+              {
+                withCredentials: true,
+              }
+            );
+            console.log(res);
+            setUserData(res.data.data.user);
+            window.localStorage.setItem("user", JSON.stringify(res.data.data));
+          } catch (err) {
+            console.log(err.error);
+          }
+        })()
       : (async () => {
           try {
             const res = await axios.get(

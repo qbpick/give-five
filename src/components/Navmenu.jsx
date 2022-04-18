@@ -47,6 +47,9 @@ export const Navmenu = () => {
           <Link to="create_subject" className={style.navmenu_link}>
             Добавить предмет
           </Link>
+          <Link to="statistics" className={style.navmenu_link}>
+            Статистика
+          </Link>
         </>
       ) : (
         ""

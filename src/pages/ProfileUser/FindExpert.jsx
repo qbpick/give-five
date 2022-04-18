@@ -10,16 +10,16 @@ export const FindExpert = () => {
       try {
         const res =
           window.localStorage.getItem("token") &&
-          JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
+          JSON.parse(window.localStorage.getItem("token"))?.role === "user"
             ? await axios.get(
-                "https://high-five.site/api/admin/get_all_expert",
+                "https://high-five.site/api/user/get_all_expert",
                 { withCredentials: true }
               )
             : await axios.get(
                 "https://high-five.site/api/teacher/get_all_expert",
                 { withCredentials: true }
               );
-        setData(res.data.data.personal_data);
+        setData(res.data.data.items);
       } catch (error) {
         console.log(error);
       }
@@ -31,6 +31,27 @@ export const FindExpert = () => {
       ? setDisable(false)
       : setDisable(true);
   };
+  const addFriendExpert = async (e) => {
+    let reqObj;
+    data.forEach((elem) => {
+      if (elem.user.id === e.target.id) {
+        reqObj = {
+          friend_id: e.target.id,
+        };
+      }
+    });
+    try {
+      const res = await axios.post(
+        "https://high-five.site/api/user/getFriends",
+        reqObj,
+        { withCredentials: true }
+      );
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <section className={style.find_expert__section}>
       <h2>Поиск эксперта</h2>
@@ -65,9 +86,15 @@ export const FindExpert = () => {
           return (
             <div className={style.block_expert}>
               <p>
-                ФИО: {item.first_name} {item.last_name} {item.middle_name}
+                ФИО: {item.personal_data.first_name}{" "}
+                {item.personal_data.last_name} {item.personal_data.middle_name}
               </p>
-              <button>
+              <button
+                onClick={(e) => {
+                  addFriendExpert(e);
+                }}
+                id={item.user.id}
+              >
                 <Link to="/messanger" className={style.link_button}>
                   {" "}
                   {/*мб можно сделать сразу ссылку к диалогу через id */}

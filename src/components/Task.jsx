@@ -15,7 +15,7 @@ export const Task = ({ onChange, task, id }) => {
       ...prev,
       {
         id: prev[prev.length - 1]?.id ? prev[prev.length - 1]?.id + 1 : 1,
-        answers: "",
+        answer: "",
         correct: false,
       },
     ]);
@@ -28,7 +28,7 @@ export const Task = ({ onChange, task, id }) => {
   // };
   const changeTextAnswer = (value, idx) => {
     const ans = [...answers];
-    ans[idx].answers = value;
+    ans[idx].answer = value;
     task.question_answers = [...ans];
   };
   const deleteAnswer = (id) => {

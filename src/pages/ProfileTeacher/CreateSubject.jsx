@@ -6,8 +6,9 @@ export const CreateSubject = () => {
   const [subject, setSubject] = useState("");
   const [error, setError] = useState("");
   const createSubj = () => {
-    const data = { subject: subject };
+    const data = { name: subject };
     try {
+      console.log(data);
       const res =
         window.localStorage.getItem("token") &&
         JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
@@ -27,7 +28,6 @@ export const CreateSubject = () => {
             );
       console.log(res);
     } catch (error) {
-      console.log(error);
       setError(error.error.message);
     }
   };
@@ -37,7 +37,7 @@ export const CreateSubject = () => {
       <div className={style.createsubject_input}>
         <span>Название: &nbsp;</span>
         <input
-          onInput={subject}
+          onInput={(e) => setSubject(e.target.value)}
           type="text"
           placeholder="Введите название предмета"
         />

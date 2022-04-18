@@ -80,8 +80,8 @@ export const Tests = ({ TestToWork }) => {
               { withCredentials: true }
             );
             console.log(res.data.data);
-            setTest(res.data.data.items);
             setTestExp(res.data.data.items);
+            setTest(res.data.data.items);
           } catch (error) {
             console.log(error);
           }
@@ -154,36 +154,8 @@ export const Tests = ({ TestToWork }) => {
           <p>Тема: {data.name_test}</p>
           <p>Кол-во вопросов: {data.json_data.length}</p>
           {/* Если нету, прст убери */}
-          <button>
-            <Link
-              id={data.id}
-              onClick={setTestToWork}
-              to={`${data.id}`}
-              className={style.link_button}
-            >
-              Начать
-            </Link>
-          </button>
-          <button>
-            <Link
-              id={data.id}
-              onClick={setTestToWorkExp}
-              to="/profile/give_access_test"
-              className={style.link_button}
-            >
-              Дать доступ
-            </Link>
-          </button>
-        </div>
-      ))}
-      {tests.map(
-        (data) => (
-          // test.subject === data.test_subject ? (
-          <div key={data.id} className={style.block_test}>
-            <p>Предмет: {data.test_subject}</p>
-            <p>Тема: {data.name_test}</p>
-            <p>Кол-во вопросов: {data.json_data.length}</p>{" "}
-            {/* Если нету, прст убери */}
+          {window.localStorage.getItem("token") &&
+          JSON.parse(window.localStorage.getItem("token"))?.role === "user" ? (
             <button>
               <Link
                 id={data.id}
@@ -194,6 +166,62 @@ export const Tests = ({ TestToWork }) => {
                 Начать
               </Link>
             </button>
+          ) : (
+            ""
+          )}
+
+          <button>
+            <Link
+              id={data.id}
+              onClick={setTestToWorkExp}
+              to="/profile/give_access_test"
+              className={style.link_button}
+            >
+              Доступ
+            </Link>
+          </button>
+          {window.localStorage.getItem("token") &&
+          JSON.parse(window.localStorage.getItem("token"))?.role ===
+            "teacher" ? (
+            <button>
+              <Link
+                id={data.id}
+                onClick={setTestToWorkExp}
+                to="/profile/statistics_test"
+                className={style.link_button}
+              >
+                Оценки
+              </Link>
+            </button>
+          ) : (
+            ""
+          )}
+        </div>
+      ))}
+      {tests.map(
+        (data) => (
+          // test.subject === data.test_subject ? (
+          <div key={data.id} className={style.block_test}>
+            <p>Предмет: {data.test_subject}</p>
+            <p>Тема: {data.name_test}</p>
+            <p>Кол-во вопросов: {data.json_data.length}</p>{" "}
+            {/* Если нету, прст убери */}
+            {window.localStorage.getItem("token") &&
+            JSON.parse(window.localStorage.getItem("token"))?.role ===
+              "user" ? (
+              <button>
+                <Link
+                  id={data.id}
+                  onClick={setTestToWork}
+                  to={`${data.id}`}
+                  className={style.link_button}
+                >
+                  Начать
+                </Link>
+              </button>
+            ) : (
+              ""
+            )}
           </div>
         )
         // ) : (

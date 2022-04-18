@@ -23,15 +23,18 @@ import { CreateSubject } from "./pages/ProfileTeacher/CreateSubject";
 import { ResultTest } from "./pages/ResultTest";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { useState } from "react";
+import { StatisticsTest } from "./pages/StatisticsTest";
+import { Statistics } from "./pages/Statistics";
 const App = () => {
   const navigate = useNavigate();
   const { isAuth, setAuth } = useAuth();
   // if (isAuth) {
   //   navigate("/profile", { replace: true });
   // }
-  const [testData, setTestData] = useState({})
+  const [testData, setTestData] = useState({});
   const testToWork = (value) => {
-    setTestData(value)
+    setTestData(value);
+    console.log(testData);
   };
   return (
     <>
@@ -55,7 +58,10 @@ const App = () => {
             {/* Создание теста  учитель*/}
             <Route path="create_test" element={<CreateTest />} />
             {/* Создание теста  учитель*/}
-            <Route path="give_access_test" element={<GiveAccessTest testData={testData} />} />
+            <Route
+              path="give_access_test"
+              element={<GiveAccessTest testData={testData} />}
+            />
             {/* Дать доступ к тесту учитель*/}
             {/* </> */}
             {/* )} */}
@@ -75,20 +81,40 @@ const App = () => {
             JSON.parse(window.localStorage.getItem("token"))?.role ===
               "expert" ? (
               <>
-                {/* Создание теста  учитель*/}
-                <Route path="create_test" element={<CreateSubject />} />
+                {/* Создание предмета учитель*/}
+                <Route path="create_subject" element={<CreateSubject />} />
                 <Route path="infoexpert" element={<InfoExpert />} />
                 {/* Профиль эксперта */}
               </>
             ) : (
               ""
             )}
-
+            {window.localStorage.getItem("token") &&
+            JSON.parse(window.localStorage.getItem("token"))?.role ===
+              "teacher" ? (
+              <>
+                {/* Создание теста  учитель*/}
+                <Route path="create_subject" element={<CreateSubject />} />
+                <Route path="create_test" element={<CreateTest />} />
+                <Route path="infoexpert" element={<InfoExpert />} />
+                <Route
+                  path="statistics_test"
+                  element={<StatisticsTest testData={testData} />}
+                />
+                {/* Профиль эксперта */}
+              </>
+            ) : (
+              ""
+            )}
             <Route path="find_expert" element={<FindExpert />} />
             <Route path="infouser" element={<InfoUser />} />
-            <Route path="tests" element={<Tests TestToWork={testToWork}/>} />
+            <Route path="tests" element={<Tests TestToWork={testToWork} />} />
             <Route path="tests/:id" element={<Test testData={testData} />} />
-            <Route path="tests/:id/result" element={<ResultTest testData={testData} />} />
+            <Route
+              path="tests/:id/result"
+              element={<ResultTest testData={testData} />}
+            />
+            <Route path="statistics" element={<Statistics />} />
           </Route>
           {/* </>
           ) : (
