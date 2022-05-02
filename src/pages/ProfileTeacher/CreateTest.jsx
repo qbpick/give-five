@@ -22,6 +22,20 @@ import axios from "axios";
 // ],
 
 export const CreateTest = () => {
+  const [subjectSect, setSubjectSect] = useState([]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.get(
+          "https://high-five.site/api/teacher/all_subject",
+          { withCredentials: true }
+        );
+        setSubjectSect(res.data.items);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
   const navigate = useNavigate();
   const [test, setTest] = useState({
     name_test: "",
@@ -89,20 +103,15 @@ export const CreateTest = () => {
       <h2>Создать тест</h2>
       <div className={style.section_input_title}>
         <span>Предмет: &nbsp;</span>
-        <select name="subject" onChange={(e) => changeSubject(e)}>
+        <select name="subject" onChange={(e) => changeSubject(e)} required>
           <option value="Выберите предмет">Выберите предмет</option>
-          <option name="english" value="Английский">
-            Английский
-          </option>
-          <option name="mathematics" value="Математика">
-            Математика
-          </option>
-          <option name="information" value="Информатика">
-            Информатика
-          </option>
-          <option name="russia" value="Русский язык">
-            Русский язык
-          </option>
+          {subjectSect.map((item) => {
+            return (
+              <option name={item.name} value={item.name}>
+                {item.name}
+              </option>
+            );
+          })}
         </select>
 
         {/* потом раскоментить, когда макс сделает эндпоинт
@@ -113,11 +122,11 @@ export const CreateTest = () => {
             );
           })}
         </select> */}
-        
       </div>
       <div className={style.section_input_title}>
         <span>Тема: &nbsp;</span>
         <input
+          required
           type="text"
           placeholder="Введите тему"
           value={test.name_test}

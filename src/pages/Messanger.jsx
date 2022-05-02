@@ -11,6 +11,15 @@ export const Messanger = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [chats, setChats] = useState([]);
   const [chatMessages, setChatMessages] = useState([]);
+  const [wsData, setWsData] = useState([]);
+  useEffect(() => {
+    window.Echo.channel("Chat").listen("NewMessage", (data) => {
+      console.log(data);
+      setWsData([...wsData, data]);
+      console.log("------------------------------------------------------");
+    });
+    console.log("+++++++++++++++++");
+  }, [wsData, setWsData]);
   useEffect(() => {
     (async () => {
       try {
@@ -57,7 +66,7 @@ export const Messanger = () => {
         console.log(e);
       }
     })();
-  }, [chats, setChats]);
+  }, []);
 
   useEffect(() => {
     const cb = (e) => {
@@ -135,26 +144,34 @@ export const Messanger = () => {
         window.localStorage.getItem("token") &&
         JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
           ? await axios.post(
-              `https://high-five.site/api/admin/send/${message.to_user}`,
+              `https://high-five.site/api/admin/send/${searchParams.get(
+                "chat"
+              )}`,
               message,
               { withCredentials: true }
             )
           : window.localStorage.getItem("token") &&
             JSON.parse(window.localStorage.getItem("token"))?.role === "user"
           ? await axios.post(
-              `https://high-five.site/api/user/send/${message.to_user}`,
+              `https://high-five.site/api/user/send/${searchParams.get(
+                "chat"
+              )}`,
               message,
               { withCredentials: true }
             )
           : window.localStorage.getItem("token") &&
             JSON.parse(window.localStorage.getItem("token"))?.role === "expert"
           ? await axios.post(
-              `https://high-five.site/api/expert/send/${message.to_user}`,
+              `https://high-five.site/api/expert/send/${searchParams.get(
+                "chat"
+              )}`,
               message,
               { withCredentials: true }
             )
           : await axios.post(
-              `https://high-five.site/api/teacher/send/${message.to_user}`,
+              `https://high-five.site/api/teacher/send/${searchParams.get(
+                "chat"
+              )}`,
               message,
               { withCredentials: true }
             );
@@ -169,24 +186,31 @@ export const Messanger = () => {
       <div className={style.messanger_box}>
         <div className={style.dialogs_user}>
           {chats.length
-            ? chats.map((chat) => (
-                <NavLink
-                  to={`?${createSearchParams({ chat: chat.name })}`}
-                  className={() =>
-                    chat.name === searchParams.get("chat") ? "active" : ""
-                  }
-                  // style={() => ({
-                  //   color: "Серега" === searchParams.get("chat") ? "green" : "red",
-                  // })}
-                  key={chat.id}
-                >
-                  {chat.name}
-                </NavLink>
-              ))
+            ? chats.map((chat) =>
+                chat.session != null ? (
+                  <NavLink
+                    to={`?${createSearchParams({
+                      chat: chat.session.id,
+                      name_chat: chat.name,
+                    })}`}
+                    className={() =>
+                      chat.name === searchParams.get("chat") ? "active" : ""
+                    }
+                    // style={() => ({
+                    //   color: "Серега" === searchParams.get("chat") ? "green" : "red",
+                    // })}
+                    key={chat.id}
+                  >
+                    {chat.name}
+                  </NavLink>
+                ) : (
+                  ""
+                )
+              )
             : "Пока у вас нет диалогов"}
         </div>
         <div className={style.box_messanger}>
-          <p>{searchParams.get("chat")}</p>
+          <p>{searchParams.get("name_chat")}</p>
           <div className={style.dialog_box}>
             <div>
               {chatMessages.length

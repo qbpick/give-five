@@ -5,7 +5,7 @@ import style from "./ProfileTeacher.module.css";
 export const GiveAccessTest = ({ testData }) => {
   const testDataItem = testData;
   console.log(testData);
-  const [subj, setSubj] = useState();
+  const [subj, setSubj] = useState([]);
   useEffect(() => {
     window.localStorage.getItem("token") &&
     JSON.parse(window.localStorage.getItem("token"))?.role === "expert"
@@ -70,8 +70,9 @@ export const GiveAccessTest = ({ testData }) => {
           res.data.data.user_info.role_slug == "user"
         ) {
           setUser([res.data.data.user_info]);
+        } else {
+          alert("Вам нельзя дать права на тест этому пользователю!");
         }
-        alert("Вам нельзя дать права на тест этому пользователю!");
       }
     } catch (error) {
       console.log(error);

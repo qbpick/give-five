@@ -1,8 +1,85 @@
 import style from "./Components.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useEffect } from "react";
 export const Navmenu = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+    window.localStorage.getItem("token") &&
+    JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
+      ? (async () => {
+          try {
+            const res = await axios.get(
+              "https://high-five.site/api/admin/info",
+              {
+                withCredentials: true,
+              }
+            );
+          } catch (err) {
+            let code = err.message;
+            code = code.slice(code.length - 3, code.length);
+            if (code == "401") {
+              localStorage.clear("token");
+              navigate("/login");
+            }
+          }
+        })()
+      : window.localStorage.getItem("token") &&
+        JSON.parse(window.localStorage.getItem("token"))?.role === "teacher"
+      ? (async () => {
+          try {
+            const res = await axios.get(
+              "https://high-five.site/api/teacher/info",
+              {
+                withCredentials: true,
+              }
+            );
+          } catch (err) {
+            let code = err.message;
+            code = code.slice(code.length - 3, code.length);
+            if (code == "401") {
+              localStorage.clear("token");
+              navigate("/login");
+            }
+          }
+        })()
+      : window.localStorage.getItem("token") &&
+        JSON.parse(window.localStorage.getItem("token"))?.role === "expert"
+      ? (async () => {
+          try {
+            const res = await axios.get(
+              "https://high-five.site/api/expert/info",
+              {
+                withCredentials: true,
+              }
+            );
+          } catch (err) {
+            let code = err.message;
+            code = code.slice(code.length - 3, code.length);
+            if (code == "401") {
+              localStorage.clear("token");
+              navigate("/login");
+            }
+          }
+        })()
+      : (async () => {
+          try {
+            const res = await axios.get(
+              "https://high-five.site/api/user/info",
+              {
+                withCredentials: true,
+              }
+            );
+          } catch (err) {
+            let code = err.message;
+            code = code.slice(code.length - 3, code.length);
+            if (code == "401") {
+              localStorage.clear("token");
+              navigate("/login");
+            }
+          }
+        })();
+  }, []);
   const handleLogout = async () => {
     try {
       const res = await axios.post("https://high-five.site/api/logout", {
@@ -49,6 +126,9 @@ export const Navmenu = () => {
           </Link>
           <Link to="statistics" className={style.navmenu_link}>
             Статистика
+          </Link>
+          <Link to="expert_statistics" className={style.navmenu_link}>
+            Мои эксперты
           </Link>
         </>
       ) : (

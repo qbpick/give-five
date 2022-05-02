@@ -1,9 +1,24 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import style from "./Profile.module.css";
 import axios from "axios";
 
 export const FindExpert = () => {
+  const [subjectSect, setSubjectSect] = useState([]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.get(
+          "https://high-five.site/api/user/all_subject",
+          { withCredentials: true }
+        );
+        setSubjectSect(res.data.items);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   useEffect(() => {
     (async () => {
@@ -20,6 +35,7 @@ export const FindExpert = () => {
                 { withCredentials: true }
               );
         setData(res.data.data.items);
+        console.log(res.data.data);
       } catch (error) {
         console.log(error);
       }
@@ -34,7 +50,7 @@ export const FindExpert = () => {
   const addFriendExpert = async (e) => {
     let reqObj;
     data.forEach((elem) => {
-      if (elem.user.id === e.target.id) {
+      if (elem.user.id == e.target.id) {
         reqObj = {
           friend_id: e.target.id,
         };
@@ -42,11 +58,12 @@ export const FindExpert = () => {
     });
     try {
       const res = await axios.post(
-        "https://high-five.site/api/user/getFriends",
+        "https://high-five.site/api/user/session/create",
         reqObj,
         { withCredentials: true }
       );
       console.log(res);
+      navigate("/messanger");
     } catch (error) {
       console.log(error);
     }
@@ -56,20 +73,15 @@ export const FindExpert = () => {
     <section className={style.find_expert__section}>
       <h2>Поиск эксперта</h2>
       <div className={style.find_expert_select}>
-        <select name="subject" onChange={changeDisable}>
+        <select name="subject" required>
           <option value="Выберите предмет">Выберите предмет</option>
-          <option name="english" value="Английский язык">
-            Английский язык
-          </option>
-          <option name="mathematics" value="Математика">
-            Математика
-          </option>
-          <option name="information" value="Информатика">
-            Информатика
-          </option>
-          <option name="russia" value="Русский язык">
-            Русский язык
-          </option>
+          {subjectSect.map((item) => {
+            return (
+              <option name={item.name} value={item.name}>
+                {item.name}
+              </option>
+            );
+          })}
         </select>
         <select name="theme" disabled={disable}>
           <option value="Выберите тему">Выберите тему</option>
@@ -89,17 +101,16 @@ export const FindExpert = () => {
                 ФИО: {item.personal_data.first_name}{" "}
                 {item.personal_data.last_name} {item.personal_data.middle_name}
               </p>
+              <p>
+                email: {item.user.email}
+              </p>
               <button
                 onClick={(e) => {
                   addFriendExpert(e);
                 }}
                 id={item.user.id}
               >
-                <Link to="/messanger" className={style.link_button}>
-                  {" "}
-                  {/*мб можно сделать сразу ссылку к диалогу через id */}
-                  Написать эксперту
-                </Link>
+                Написать эксперту
               </button>
             </div>
           );

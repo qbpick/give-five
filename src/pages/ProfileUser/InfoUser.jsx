@@ -19,7 +19,7 @@ export const InfoUser = () => {
               }
             );
             console.log(res);
-            setUserData(res.data.data.user);
+            setUserData(res.data.data.items);
             setverifiedAt(res.data.data.email_verified_at);
             window.localStorage.setItem("user", JSON.stringify(res.data.data));
           } catch (err) {
@@ -37,7 +37,7 @@ export const InfoUser = () => {
               }
             );
             console.log(res);
-            setUserData(res.data.data.user);
+            setUserData(res.data.data.items);
             window.localStorage.setItem("user", JSON.stringify(res.data.data));
           } catch (err) {
             console.log(err.error);
@@ -54,7 +54,7 @@ export const InfoUser = () => {
               }
             );
             console.log(res);
-            setUserData(res.data.data.user);
+            setUserData(res.data.data.items);
             window.localStorage.setItem("user", JSON.stringify(res.data.data));
           } catch (err) {
             console.log(err.error);
@@ -69,7 +69,7 @@ export const InfoUser = () => {
               }
             );
             console.log(res);
-            setUserData(res.data.data.user);
+            setUserData(res.data.data.items);
             window.localStorage.setItem("user", JSON.stringify(res.data.data));
           } catch (err) {
             console.log(err.error);

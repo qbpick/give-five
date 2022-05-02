@@ -30,8 +30,8 @@ export const StatisticsTest = ({ testData }) => {
           <p>
             ФИО: {data.first_name} {data.middle_name} {data.last_name}
           </p>
-          <p>Предмет: {data.test_subject}</p>
-          <p>Кол-во баллов: {data.statistics_score}%</p>
+          {/* <p>Предмет: {data.test_subject}</p> */}
+          <p>Кол-во баллов: {data.statistics_score}</p>
           <p>Email: {data.email}</p>
           {/* Если нету, прст убери */}
           {/* <button>

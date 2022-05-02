@@ -7,18 +7,19 @@ import { useState } from "react";
 //   answers: "",
 //   correct: false,
 // }
-
+let last_id = 1;
 export const Task = ({ onChange, task, id }) => {
   const [answers, setAnswers] = useState([]);
   const addAnswer = () => {
     setAnswers((prev) => [
       ...prev,
       {
-        id: prev[prev.length - 1]?.id ? prev[prev.length - 1]?.id + 1 : 1,
+        id: prev[prev.length - 1]?.id ? prev[prev.length - 1]?.id + 1 : last_id,
         answer: "",
         correct: false,
       },
     ]);
+    last_id++;
   };
   // const setAnswer = (value) => {
   //   // quest.question_answers.push(value);

@@ -25,6 +25,8 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { useState } from "react";
 import { StatisticsTest } from "./pages/StatisticsTest";
 import { Statistics } from "./pages/Statistics";
+import { MarkTest } from "./pages/MarkTest";
+import { TeacherExpertStatistics } from "./pages/TeacherExpertStatistics";
 const App = () => {
   const navigate = useNavigate();
   const { isAuth, setAuth } = useAuth();
@@ -34,7 +36,7 @@ const App = () => {
   const [testData, setTestData] = useState({});
   const testToWork = (value) => {
     setTestData(value);
-    console.log(testData);
+    console.log(value);
   };
   return (
     <>
@@ -97,6 +99,11 @@ const App = () => {
                 <Route path="create_subject" element={<CreateSubject />} />
                 <Route path="create_test" element={<CreateTest />} />
                 <Route path="infoexpert" element={<InfoExpert />} />
+                <Route path="expert_statistics" element={<TeacherExpertStatistics />} />
+                <Route
+                  path="mark_test"
+                  element={<MarkTest testData={testData} />}
+                />
                 <Route
                   path="statistics_test"
                   element={<StatisticsTest testData={testData} />}
