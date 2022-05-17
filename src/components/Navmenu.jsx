@@ -102,19 +102,15 @@ export const Navmenu = () => {
         Тесты
       </Link>
       {window.localStorage.getItem("token") &&
-      JSON.parse(window.localStorage.getItem("token"))?.role === "expert" ? (
-        <Link to="find_expert" className={style.navmenu_link}>
-          Найти эксперта
-        </Link>
+      JSON.parse(window.localStorage.getItem("token"))?.role === "user" ? (
+        <>
+          <Link to="find_expert" className={style.navmenu_link}>
+            Найти эксперта
+          </Link>
+        </>
       ) : (
         ""
       )}
-      <Link to="find_expert" className={style.navmenu_link}>
-        Найти эксперта
-      </Link>
-      {/* У эксперта видать те же самые линки, кроме найти эксперта */}
-
-      {/* Дальше линки учителя идут */}
       {window.localStorage.getItem("token") &&
       JSON.parse(window.localStorage.getItem("token"))?.role === "teacher" ? (
         <>
@@ -140,18 +136,15 @@ export const Navmenu = () => {
           <Link to="give_permission_user" className={style.navmenu_link}>
             Дать Права
           </Link>
-          {/* <Link to="find_expert" className={style.navmenu_link}>
-            Найти эксперта
-          </Link> */}
+          <Link to="add_ip" className={style.navmenu_link}>
+            Добавить ip
+          </Link>
           <Link to="create_test" className={style.navmenu_link}>
             Создать тест
           </Link>
-          {/* <Link to="create_test" className={style.navmenu_link}>
-            Создать тест
-          </Link> */}
-          {/* <Link to="create_subject" className={style.navmenu_link}>
-            Добавить предмет
-          </Link> */}
+          <Link to="log" className={style.navmenu_link}>
+            Лог событий
+          </Link>
         </>
       ) : (
         ""

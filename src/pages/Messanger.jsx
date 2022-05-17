@@ -11,15 +11,6 @@ export const Messanger = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [chats, setChats] = useState([]);
   const [chatMessages, setChatMessages] = useState([]);
-  const [wsData, setWsData] = useState([]);
-  useEffect(() => {
-    window.Echo.channel("Chat").listen("NewMessage", (data) => {
-      console.log(data);
-      setWsData([...wsData, data]);
-      console.log("------------------------------------------------------");
-    });
-    console.log("+++++++++++++++++");
-  }, [wsData, setWsData]);
   useEffect(() => {
     (async () => {
       try {

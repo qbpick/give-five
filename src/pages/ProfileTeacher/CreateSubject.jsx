@@ -1,10 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./ProfileTeacher.module.css";
 import axios from "axios";
 
 export const CreateSubject = () => {
   const [subject, setSubject] = useState("");
   const [error, setError] = useState("");
+  const [subj, setSubj] = useState([]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.get(
+          "https://high-five.site/api/teacher/all_subject",
+          { withCredentials: true }
+        );
+        setSubj(res.data.items);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
   const createSubj = () => {
     const data = { name: subject };
     try {
@@ -31,6 +45,21 @@ export const CreateSubject = () => {
       setError(error.error.message);
     }
   };
+  const deleteSubject = async (id) => {
+    console.log("ID=======================" + id);
+    console.log(subj);
+    const fil = subj.filter((item) => item.id !== id);
+    setSubj(fil);
+    console.log(subj);
+    try {
+      const res = await axios.delete(
+        `https://high-five.site/api/teacher/delete_subject/${id}`
+      );
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <section className={style.createtest_section}>
       <h2>Добавить предмет</h2>
@@ -43,6 +72,16 @@ export const CreateSubject = () => {
         />
       </div>
       <button onClick={createSubj}>Создать предмет</button>
+      <div className={style.tests_list_to_subj}>
+        {subj.map((item) => {
+          return (
+            <div key={item.id} className={style.block_subj}>
+              <p>{item.name}</p>
+              <button onClick={(_) => deleteSubject(item.id)}>Удалить</button>
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 };

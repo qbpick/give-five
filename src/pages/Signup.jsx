@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Footer } from "../components/Footer";
 import style from "./Pages.module.css";
 
 export const Signup = () => {
@@ -32,66 +33,70 @@ export const Signup = () => {
   };
 
   return (
-    <form onSubmit={(data) => handleSubmit(data)}>
-      <section className={style.signup_section}>
-        <h2>Регистрация</h2>
-        <input
-          className={style.input_text_auth}
-          type="text"
-          placeholder="Введите Имя"
-          name="first_name"
-          required
-          value={form.first_name}
-          onChange={(e) => setForm({ ...form, first_name: e.target.value })}
-        />
-        <input
-          className={style.input_text_auth}
-          type="text"
-          placeholder="Введите Фамилию"
-          name="last_name"
-          required
-          value={form.last_name}
-          onChange={(e) => setForm({ ...form, last_name: e.target.value })}
-        />
-        <input
-          className={style.input_text_auth}
-          type="text"
-          placeholder="Введите Отчество"
-          name="middle_name"
-          required
-          value={form.middle_name}
-          onChange={(e) => setForm({ ...form, middle_name: e.target.value })}
-        />
-        <input
-          className={style.input_text_auth}
-          type="email"
-          placeholder="Введите E-mail"
-          name="email"
-          required
-          value={form.email}
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-        />
-        <input
-          className={style.input_text_auth}
-          type="password"
-          autoComplete="on"
-          placeholder="Введите Пароль"
-          name="password"
-          required
-          value={form.password}
-          onChange={(e) => setForm({ ...form, password: e.target.value })}
-        />
-        {error && (
-          <span style={{ color: "red" }}>Не верно введены данные.</span>
-        )}
-        <button type="submit">Зарегистрироваться</button>
-        <p>
-          Уже имеется аккаунт? &nbsp;
-          <Link className={style.login__link_authorization} to="/login">
-            Авторизуйтесь
-          </Link>
-        </p>
-      </section>
-    </form>
+    <>
+      <form onSubmit={(data) => handleSubmit(data)}>
+        <section className={style.signup_section}>
+          <h2>Регистрация</h2>
+          <input
+            className={style.input_text_auth}
+            type="text"
+            placeholder="Введите Имя"
+            name="first_name"
+            required
+            value={form.first_name}
+            onChange={(e) => setForm({ ...form, first_name: e.target.value })}
+          />
+          <input
+            className={style.input_text_auth}
+            type="text"
+            placeholder="Введите Фамилию"
+            name="last_name"
+            required
+            value={form.last_name}
+            onChange={(e) => setForm({ ...form, last_name: e.target.value })}
+          />
+          <input
+            className={style.input_text_auth}
+            type="text"
+            placeholder="Введите Отчество"
+            name="middle_name"
+            required
+            value={form.middle_name}
+            onChange={(e) => setForm({ ...form, middle_name: e.target.value })}
+          />
+          <input
+            className={style.input_text_auth}
+            type="email"
+            placeholder="Введите E-mail"
+            name="email"
+            required
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+          />
+          <input
+            className={style.input_text_auth}
+            type="password"
+            autoComplete="on"
+            placeholder="Введите Пароль"
+            name="password"
+            required
+            value={form.password}
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
+          />
+          {error && (
+            <span style={{ color: "red" }}>Не верно введены данные.</span>
+          )}
+          <button type="submit">Зарегистрироваться</button>
+          <p>
+            Уже имеется аккаунт? &nbsp;
+            <Link className={style.login__link_authorization} to="/login">
+              Авторизуйтесь
+            </Link>
+          </p>
+        </section>
+      </form>
+      <br />
+      <Footer />
+    </>
   );
 };

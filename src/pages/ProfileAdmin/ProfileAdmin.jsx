@@ -13,41 +13,6 @@ const roles = {
   user: "user",
   expert: "expert",
 };
-// const govnoLARAVEL = [
-//   {
-//     first_name: "John",
-//     last_name: "Fam",
-//     middle_name: "Fsa",
-//     email: "john@gay.com",
-//     role: "admin",
-//   },
-//   {
-//     first_name: "John",
-//     last_name: "Fam",
-//     middle_name: "Fsa",
-//     email: "john@gay.com",
-//     role: "admin",
-//   },
-//   {
-//     first_name: "John",
-//     last_name: "Fam",
-//     middle_name: "Fsa",
-//     email: "john@gay.com",
-//     role: "admin",
-//   },
-//   {
-//     first_name: "John",
-//     last_name: "Fam",
-//     middle_name: "Fsa",
-//     email: "john@gay.com",
-//     role: "admin",
-//   },
-// ];
-// const godlikeREACT = {
-//   email: "john@gay.com",
-//   role: "teacher",
-//   permission: "teacher",
-// };
 let form = {
   email: "",
   role: "",

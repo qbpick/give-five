@@ -27,6 +27,8 @@ import { StatisticsTest } from "./pages/StatisticsTest";
 import { Statistics } from "./pages/Statistics";
 import { MarkTest } from "./pages/MarkTest";
 import { TeacherExpertStatistics } from "./pages/TeacherExpertStatistics";
+import { FindProfileExpert } from "./pages/ProfileUser/FindProfileExpert";
+import { Logging } from "./pages/ProfileAdmin/Logging";
 const App = () => {
   const navigate = useNavigate();
   const { isAuth, setAuth } = useAuth();
@@ -34,8 +36,13 @@ const App = () => {
   //   navigate("/profile", { replace: true });
   // }
   const [testData, setTestData] = useState({});
+  const [expertDataProfile, setExpertDataProfile] = useState({});
   const testToWork = (value) => {
     setTestData(value);
+    console.log(value);
+  };
+  const expertData = (value) => {
+    setExpertDataProfile(value);
     console.log(value);
   };
   return (
@@ -71,10 +78,11 @@ const App = () => {
             JSON.parse(window.localStorage.getItem("token"))?.role ===
               "admin" ? (
               <>
-                {/* Создание теста  учитель*/}
+                {/* Создание теста админ*/}
                 <Route path="create_test" element={<CreateTest />} />
-                <Route path="give_permission_user" element={<ProfileAdmin />} />
-                {/* Дать роль пользователю  админ*/}
+                <Route path="give_permission_user" element={<ProfileAdmin />} />                {/* Дать роль пользователю  админ*/}
+                <Route path="log" element={<Logging />} />
+
               </>
             ) : (
               ""
@@ -99,7 +107,10 @@ const App = () => {
                 <Route path="create_subject" element={<CreateSubject />} />
                 <Route path="create_test" element={<CreateTest />} />
                 <Route path="infoexpert" element={<InfoExpert />} />
-                <Route path="expert_statistics" element={<TeacherExpertStatistics />} />
+                <Route
+                  path="expert_statistics"
+                  element={<TeacherExpertStatistics />}
+                />
                 <Route
                   path="mark_test"
                   element={<MarkTest testData={testData} />}
@@ -113,7 +124,16 @@ const App = () => {
             ) : (
               ""
             )}
-            <Route path="find_expert" element={<FindExpert />} />
+            <Route
+              path="find_expert"
+              element={<FindExpert expertData={expertData} />}
+            />
+            <Route
+              path="find_expert/:id"
+              element={
+                <FindProfileExpert expertDataProfile={expertDataProfile} />
+              }
+            />
             <Route path="infouser" element={<InfoUser />} />
             <Route path="tests" element={<Tests TestToWork={testToWork} />} />
             <Route path="tests/:id" element={<Test testData={testData} />} />

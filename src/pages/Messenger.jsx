@@ -55,7 +55,7 @@ export const Messenger = () => {
   const [wsData, setWsData] = useState([]);
 
   useEffect(() => {
-    window.Echo.channel("messenger").listen("NewMessage", (data) => {
+    window.Echo.channel("Chat").listen("NewMessage", (data) => {
       console.log(data);
       setWsData([...wsData, data]);
       console.log("------------------------------------------------------");

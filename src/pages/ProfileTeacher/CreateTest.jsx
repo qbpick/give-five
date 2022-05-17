@@ -97,7 +97,12 @@ export const CreateTest = () => {
       console.log(error);
     }
   };
-
+  const deleteTask = (id) => {
+    console.log(id);
+    const filtered = [...questions.filter((quest) => quest.question_id !== id)];
+    test.json_data = [...filtered];
+    setQuestions([...filtered]);
+  };
   return (
     <section className={style.createtest_section}>
       <h2>Создать тест</h2>
@@ -113,15 +118,6 @@ export const CreateTest = () => {
             );
           })}
         </select>
-
-        {/* потом раскоментить, когда макс сделает эндпоинт
-        <select name="subject" onChange={(e) => changeSubject(e)}>
-          {subj.map((subject) => {
-            return (
-              <option value={subject.subject_name}>{subject.subject_name}</option>
-            );
-          })}
-        </select> */}
       </div>
       <div className={style.section_input_title}>
         <span>Тема: &nbsp;</span>
@@ -137,6 +133,7 @@ export const CreateTest = () => {
         {questions.map((task, idx) => (
           <Task
             task={task}
+            handleDeleteTask={(e) => deleteTask(task.question_id)}
             onChange={(e) => changeQuestionName(e.target.value, idx)}
             id={task.question_id}
             key={task.question_id}

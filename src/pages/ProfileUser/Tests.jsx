@@ -2,13 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./Profile.module.css";
-
+import load_gif from "../../assets/images/3.gif";
 export const Tests = ({ TestToWork }) => {
   const [disable, setDisable] = useState(true);
   const [tests, setTests] = useState([]);
   const [test, setTest] = useState([]);
   let [testExp, setTestExp] = useState([]);
-  const [subjectSect, setSubjectSect] = useState([]);
+  const [paginatePages, setPaginatePages] = useState([]);
+  const [currentPage, setCurrentPage] = useState({});
+  const [loader, setLoader] = useState(false);
   const setTestToWork = (e) => {
     tests.forEach((element) => {
       if (e.target.id == element.id) {
@@ -17,6 +19,7 @@ export const Tests = ({ TestToWork }) => {
     });
   };
   useEffect(() => {
+    setLoader(true);
     window.localStorage.getItem("token") &&
     JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
       ? (async () => {
@@ -25,9 +28,17 @@ export const Tests = ({ TestToWork }) => {
               `https://high-five.site/api/admin/all_tests`,
               { withCredentials: true }
             );
+            setLoader(false);
             console.log(res.data.data);
+            setCurrentPage(res.data.data.paginate);
+            let arr = [];
+            for (let i = 1; i <= res.data.data.paginate.total_pages; i++) {
+              arr.push(i);
+            }
+            setPaginatePages(arr);
             setTests(res.data.data.items);
           } catch (error) {
+            setLoader(false);
             console.log(error);
           }
         })()
@@ -39,9 +50,17 @@ export const Tests = ({ TestToWork }) => {
               "https://high-five.site/api/user/find_tests",
               { withCredentials: true }
             );
+            setLoader(false);
             console.log(res.data.data);
+            setCurrentPage(res.data.data.paginate);
+            let arr = [];
+            for (let i = 1; i <= res.data.data.paginate.total_pages; i++) {
+              arr.push(i);
+            }
+            setPaginatePages(arr);
             setTests(res.data.data.items);
           } catch (error) {
+            setLoader(false);
             console.log(error);
           }
         })()
@@ -53,9 +72,16 @@ export const Tests = ({ TestToWork }) => {
               "https://high-five.site/api/expert/find_tests",
               { withCredentials: true }
             );
-            console.log(res.data.data);
+            setLoader(false);
+            setCurrentPage(res.data.data.paginate);
+            let arr = [];
+            for (let i = 1; i <= res.data.data.paginate.total_pages; i++) {
+              arr.push(i);
+            }
+            setPaginatePages(arr);
             setTestExp(res.data.data.items);
           } catch (error) {
+            setLoader(false);
             console.log(error);
           }
         })()
@@ -65,10 +91,18 @@ export const Tests = ({ TestToWork }) => {
               "https://high-five.site/api/teacher/all_tests",
               { withCredentials: true }
             );
+            setLoader(false);
             console.log(res.data.data);
+            setCurrentPage(res.data.data.paginate);
+            let arr = [];
+            for (let i = 1; i <= res.data.data.paginate.total_pages; i++) {
+              arr.push(i);
+            }
+            setPaginatePages(arr);
             setTestExp(res.data.data.items);
             setTest(res.data.data.items);
           } catch (error) {
+            setLoader(false);
             console.log(error);
           }
         })();
@@ -82,10 +116,7 @@ export const Tests = ({ TestToWork }) => {
   const changeTheme = (e) => {
     setTestExp((testExp = test));
     setTestExp(
-      testExp.filter(
-        (item) =>
-          item.name_test.indexOf(e.target.value)
-      )
+      testExp.filter((item) => item.name_test.indexOf(e.target.value))
     );
     console.log(testExp);
   };
@@ -95,6 +126,53 @@ export const Tests = ({ TestToWork }) => {
         TestToWork(element);
       }
     });
+  };
+  const currentPageContent = async (page) => {
+    setLoader(true);
+    try {
+      const res =
+        ((window.localStorage.getItem("token") &&
+          JSON.parse(window.localStorage.getItem("token"))?.role ===
+            "teacher")) &&
+        window.localStorage.getItem("token") &&
+        JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
+          ? await axios.get(
+              `https://high-five.site/api/${
+                window.localStorage.getItem("token") &&
+                JSON.parse(window.localStorage.getItem("token"))?.role ===
+                  "teacher"
+                  ? "teacher"
+                  : window.localStorage.getItem("token") &&
+                    JSON.parse(window.localStorage.getItem("token"))?.role ===
+                      "expert"
+                  ? "admin"
+                  : ""
+              }/all_tests?page=${page}`,
+              { withCredentials: true }
+            )
+          : await axios.get(
+              `https://high-five.site/api/${
+                window.localStorage.getItem("token") &&
+                JSON.parse(window.localStorage.getItem("token"))?.role ===
+                  "user"
+                  ? "user"
+                  : window.localStorage.getItem("token") &&
+                    JSON.parse(window.localStorage.getItem("token"))?.role ===
+                      "expert"
+                  ? "expert"
+                  : ""
+              }/find_tests?page=${page}`,
+              { withCredentials: true }
+            );
+      console.log(res);
+      setLoader(false);
+      setCurrentPage(res.data.data.paginate);
+      setTestExp(res.data.data.items);
+      setTest(res.data.data.items);
+    } catch (error) {
+      setLoader(false);
+      console.log(error);
+    }
   };
   return (
     <section className={style.section_tests}>
@@ -123,6 +201,7 @@ export const Tests = ({ TestToWork }) => {
           />
         </div>
       </div>
+      {loader ? <img src={load_gif} width="20vw" height="20vh" /> : ""}
       {testExp.map((data) => (
         <div key={data.id} className={style.block_test}>
           <p>Предмет: {data.subject_name}</p>
@@ -207,6 +286,86 @@ export const Tests = ({ TestToWork }) => {
           ""
         )
       )}
+      <div className={style.paginate_test}>
+        {currentPage.current_page && currentPage.current_page != 1 ? (
+          <p
+            className={style.paginate_page}
+            onClick={(e) => {
+              currentPageContent(currentPage.current_page - 1);
+            }}
+          >
+            &lt;
+          </p>
+        ) : (
+          ""
+        )}
+        {currentPage.current_page >= 5 ? (
+          <>
+            <p
+              className={style.paginate_page}
+              onClick={(e) => {
+                currentPageContent(1);
+              }}
+            >
+              {1}
+            </p>
+            <p>...</p>
+          </>
+        ) : (
+          ""
+        )}
+        {paginatePages
+          .slice(
+            currentPage.current_page < 5 ? 0 : currentPage.current_page - 3,
+            currentPage.current_page + 3
+          )
+          .map((page) => {
+            return (
+              <p
+                className={style.paginate_page}
+                onClick={(e) => {
+                  currentPageContent(page);
+                }}
+                style={
+                  currentPage?.current_page == page
+                    ? { border: "solid 2px #83d7ac" }
+                    : {}
+                }
+              >
+                {page}
+              </p>
+            );
+          })}
+        {paginatePages.length > 5 &&
+        currentPage.current_page + 4 < currentPage.total_pages ? (
+          <>
+            <p>...</p>
+
+            <p
+              className={style.paginate_page}
+              onClick={(e) => {
+                currentPageContent(currentPage.total_pages);
+              }}
+            >
+              {currentPage.total_pages}
+            </p>
+          </>
+        ) : (
+          ""
+        )}
+        {currentPage.current_page != currentPage.total_pages ? (
+          <p
+            className={style.paginate_page}
+            onClick={(e) => {
+              currentPageContent(currentPage.current_page + 1);
+            }}
+          >
+            &gt;
+          </p>
+        ) : (
+          ""
+        )}
+      </div>
     </section>
   );
 };

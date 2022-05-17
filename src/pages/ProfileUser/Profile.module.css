@@ -219,7 +219,24 @@ select > option {
   transition: 0.2s;
   background-color: #72bd96;
 }
-
+.button_to_profile_expert > button {
+  min-width: 20vh;
+  align-self: center;
+  height: 5vh;
+  font-size: 1.1em;
+  font-style: normal;
+  color: rgb(255, 255, 255);
+  border: none;
+  line-height: 0;
+  background-color: #83d7ac;
+  cursor: pointer;
+  border-radius: 10px;
+  margin: 5px;
+}
+.button_to_profile_expert > button:hover {
+  transition: 0.2s;
+  background-color: #72bd96;
+}
 
 .find_expert__section {
   width: 70vh;
@@ -240,6 +257,100 @@ select > option {
   outline: none;
   font-size: 1.2em;
   border-radius: 10px;
+}
+.paginate_test {
+  max-width: 50vw;
+  display: flex;
+  margin-top: 20px;
+}
+.paginate_page {
+  width: 30px;
+  height: 30px;
+  border: solid 1px black;
+  margin: 0 10px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  line-height: 25px;
+  border-radius: 2px;
+}
+.paginate_page:hover {
+  transition: 0.2s;
+  border: solid 1px #83d7ac;
+}
+.profile_expert_in_user {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  width: 90%;
+  font-size: 1.1em;
+}
+.fio_expert {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.fio_expert > p {
+  font-size: 1.1em;
+  font-style: normal;
+  margin: 5px;
+}
+.fio_expert > button {
+  min-width: 10vh;
+  align-self: center;
+  height: 5vh;
+  font-size: 1.1em;
+  font-style: normal;
+  color: rgb(255, 255, 255);
+  border: none;
+  line-height: 0;
+  background-color: #83d7ac;
+  cursor: pointer;
+  border-radius: 10px;
+  margin: 5px;
+  align-self: flex-end;
+}
+.fio_expert > button:hover {
+  transition: 0.2s;
+  background-color: #72bd96;
+}
+.test_expert {
+  min-width: 100%;
+  min-height: 8vh;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 20px;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1);
+  flex-wrap: nowrap;
+}
+.test_expert > p {
+  font-size: 0.9em;
+  font-style: normal;
+}
+.tests_expert {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.profile_expert_in_user > h2 {
+  font-style: normal;
+  text-align: center;
+  text-decoration: underline rgba(0, 0, 0, 0.1);
+}
+.title_profile_expert {
+  font-style: normal;
+  text-align: center;
+  margin-top: 30px;
+  text-decoration: underline rgba(0, 0, 0, 0.1);
 }
 @media screen and (max-width: 425px) {
   .profile_user_content {

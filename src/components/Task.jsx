@@ -8,7 +8,7 @@ import { useState } from "react";
 //   correct: false,
 // }
 let last_id = 1;
-export const Task = ({ onChange, task, id }) => {
+export const Task = ({handleDeleteTask, onChange, task, id }) => {
   const [answers, setAnswers] = useState([]);
   const addAnswer = () => {
     setAnswers((prev) => [
@@ -45,6 +45,7 @@ export const Task = ({ onChange, task, id }) => {
 
   return (
     <div className={style.task_section}>
+      <button className={style.button_to_delete_task} onClick={() => handleDeleteTask()}>X</button>
       <div className={style.title_task}>
         <span>Вопрос №{id}</span>
         <input
