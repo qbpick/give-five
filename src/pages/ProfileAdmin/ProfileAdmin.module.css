@@ -116,6 +116,41 @@
 .table_logging > tr {
   border-radius: 20px;
 }
+.data_ip_get {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.data_ip_get > input {
+  border-radius: 5px;
+  border: solid 1px #dddddd;
+  font-size: 1em;
+  color: rgb(0, 0, 0);
+  width: 20vh;
+  height: 5vh;
+  font-style: normal;
+  padding: 10px;
+  outline: none;
+  margin: 20px;
+}
+.data_ip_get > button {
+  min-width: 15vh;
+  align-self: center;
+  height: 5vh;
+  font-size: 1.1em;
+  font-style: normal;
+  color: rgb(255, 255, 255);
+  border: none;
+  line-height: 0;
+  background-color: #83d7ac;
+  cursor: pointer;
+  border-radius: 10px;
+  margin: 5px;
+}
+.data_ip_get > button:hover {
+  transition: 0.2s;
+  background-color: #72bd96;
+}
 .table_logging > tr > td {
   width: 16%;
   padding: 2px;

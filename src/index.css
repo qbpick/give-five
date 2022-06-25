@@ -17,13 +17,13 @@ code {
   box-sizing: border-box;
   font-family: "Source Sans Pro";
   font-weight: 500;
-  font-style: italic;
+  font-style: normal;
 }
 /* header {
   background-color: #fff;
 } */
 body {
-  background-color: #edeef0;
+  background-color: #e6e6e6;
 }
 .active {
   background-color: #5d5d5d2f;

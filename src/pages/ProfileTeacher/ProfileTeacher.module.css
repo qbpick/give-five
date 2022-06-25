@@ -102,6 +102,9 @@
   align-items: center;
   box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.03);
 }
+.createtest_section > h2 {
+  margin-bottom: 10px;
+}
 .section_input_title {
   width: 75%;
   justify-content: space-between;
@@ -121,6 +124,7 @@
   font-style: normal;
   padding: 10px;
   outline: none;
+  margin-top: 20px;
 }
 .section_input_title > select {
   border-radius: 5px;

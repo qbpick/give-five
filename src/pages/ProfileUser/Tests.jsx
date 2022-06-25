@@ -133,7 +133,7 @@ export const Tests = ({ TestToWork }) => {
       const res =
         ((window.localStorage.getItem("token") &&
           JSON.parse(window.localStorage.getItem("token"))?.role ===
-            "teacher")) &&
+            "teacher")) ||
         window.localStorage.getItem("token") &&
         JSON.parse(window.localStorage.getItem("token"))?.role === "admin"
           ? await axios.get(
@@ -141,12 +141,12 @@ export const Tests = ({ TestToWork }) => {
                 window.localStorage.getItem("token") &&
                 JSON.parse(window.localStorage.getItem("token"))?.role ===
                   "teacher"
-                  ? "teacher"
+                  ? `teacher`
                   : window.localStorage.getItem("token") &&
                     JSON.parse(window.localStorage.getItem("token"))?.role ===
                       "expert"
-                  ? "admin"
-                  : ""
+                  ? `admin`
+                  : ``
               }/all_tests?page=${page}`,
               { withCredentials: true }
             )
@@ -155,12 +155,12 @@ export const Tests = ({ TestToWork }) => {
                 window.localStorage.getItem("token") &&
                 JSON.parse(window.localStorage.getItem("token"))?.role ===
                   "user"
-                  ? "user"
+                  ? `user`
                   : window.localStorage.getItem("token") &&
                     JSON.parse(window.localStorage.getItem("token"))?.role ===
                       "expert"
-                  ? "expert"
-                  : ""
+                  ? `expert`
+                  : ``
               }/find_tests?page=${page}`,
               { withCredentials: true }
             );

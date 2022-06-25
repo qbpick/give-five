@@ -262,6 +262,7 @@ select > option {
   max-width: 50vw;
   display: flex;
   margin-top: 20px;
+  margin-bottom: 50px;
 }
 .paginate_page {
   width: 30px;
